@@ -8,6 +8,6 @@ Open a new terminal and navigate to the cloned repository's directory. If you ar
 
 If your IDE supports automatic sourcing of environments, you can add the created `.venv` file to your environments so that your IDE sources it on open.
 
-Finally, create a file in the base directory named `.env`, register an OpenAI/Anthropic API key, and add the two lines `OPENAI_API_KEY="key_here"` and `ANTHROPIC_API_KEY="key_here"`, replacing `key_here` with your respective keys.
+Finally, create a file in the base directory named `.env`, register an Anthropic API key, and add the line `ANTHROPIC_API_KEY="key_here"`, replacing `key_here` with your respective key.
 
 Once this is done, you should be all set up!
