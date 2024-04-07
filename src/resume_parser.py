@@ -6,11 +6,13 @@ import json
 
 load_dotenv()
 
+
 def initialize_anthropic_client():
     api_key = os.getenv('ANTHROPIC_API_KEY')
     if api_key is None:
         raise ValueError("The ANTHROPIC_API_KEY is not set in the environment variables.")
     return anthropic.Anthropic(api_key=api_key)
+
 
 def send_to_claude_ai(client, text):
     message = client.messages.create(
@@ -25,6 +27,7 @@ def send_to_claude_ai(client, text):
     if isinstance(message.content, list):
         concatenated_text = ''.join([cb.text for cb in message.content if hasattr(cb, 'text')])
     return concatenated_text
+
 
 def parse_resume(pdf_path):
     text = extract_text(pdf_path)
@@ -44,13 +47,15 @@ def parse_resume(pdf_path):
         print("Problematic JSON string:", json_response)
         return None
 
-client = initialize_anthropic_client()
-pdf_path = "./resume.pdf"
-resume_json = parse_resume(pdf_path)
 
-if resume_json is not None:
-    print(resume_json)
-    with open("./resume_parsed.json", "w") as json_file:
-        json_file.write(json.dumps(resume_json))
-else:
-    print("Failed to parse the resume.")
+if __name__ == "__main__":
+    client = initialize_anthropic_client()
+    pdf_path = "./resume.pdf"
+    resume_json = parse_resume(pdf_path)
+
+    if resume_json is not None:
+        print(resume_json)
+        with open("./resume_parsed.json", "w") as json_file:
+            json_file.write(json.dumps(resume_json))
+    else:
+        print("Failed to parse the resume.")
