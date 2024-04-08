@@ -1,4 +1,5 @@
 import anthropic
+import json
 import resume_compiler as rc
 import resume_parser as rp
 from dotenv import load_dotenv
@@ -72,7 +73,6 @@ def parse_resume(client: anthropic.Anthropic) -> dict:
     out: dict
         The parsed resume data.
     """
-
     while True:
         try:
             selection = select("Do you have a pre-parsed resume?", ["y", "n"])
@@ -88,14 +88,61 @@ def parse_resume(client: anthropic.Anthropic) -> dict:
             print("File not found. Please try again.")
 
 
+def correct_resume(resume: dict) -> dict:
+    """
+    Double check parsed resume with user to ensure correctness.
+
+    Parameters:
+    -----------
+    resume : dict
+        The parsed resume data.
+    
+    Returns:
+    --------
+    out: dict
+        The user-corrected resume data.
+    """
+    # for each entry:
+    # print current key path (ie, education > school > classes)
+    # print current value
+    # prompt user to confirm or correct
+    # end loop
+    def correct_recursive(resume: dict|list|str, key_path: list[str]=[]) -> dict|list|str:
+        if type(resume) == str:
+            while True:
+                print("\nField: " + " > ".join(key_path) + ":", resume)
+                selection = select(f"Is the above information correct?", ["y", "n"])
+                if selection == 0:
+                    break
+                elif selection == 1:
+                    return input(f"Please enter the correct value for {' > '.join(key_path)}: ")
+                else:
+                    print("Invalid response. Please try again.")
+        elif type(resume) == dict:
+            for key, value in resume.items():
+                resume[key] = correct_recursive(value, key_path + [key])
+        else: # type(resume) == list
+            for i, value in enumerate(resume):
+                resume[i] = correct_recursive(value, key_path + [str(i)])
+    
+    
+    return correct_recursive(resume)
+
+
 if __name__ == "__main__":
+    print("Initializing Claude client...")
     client = init_claude_client()
+    print("Done!\n")
+
     resume = parse_resume(client)
-    print(resume)
+    print("Resume parsed/loaded successfully.\n")
+
+    print("Now, let's double check to ensure our copy matches yours!")
+    resume = correct_resume(resume)
     messages = []
 
-    # input resume path
-    # parse resume, convert to json
+    # DONE input resume path
+    # DONE parse resume, convert to json
     # double check if parsing is correct
     # initial prompt to claude to read resume and identify weaknesses
     # display weaknesses, select which to improve
