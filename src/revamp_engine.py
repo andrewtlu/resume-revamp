@@ -81,10 +81,10 @@ def parse_resume(client: anthropic.Anthropic) -> tuple[dict, bool]:
             selection = select("Do you have a pre-parsed resume?", ["y", "n"])
             if selection == 0:
                 json_path = input("Please enter the path to the parsed resume: ")
-                return rp.load_resume(json_path), False
+                return rp.load_resume(json_path), True
             elif selection == 1:
                 resume_path = input("Please enter the path to your resume pdf: ")
-                return rp.parse_resume(client, resume_path), True
+                return rp.parse_resume(client, resume_path), False
             else: 
                 print("Invalid response. Please try again.")
         except FileNotFoundError:
@@ -105,73 +105,23 @@ def correct_resume(resume: dict) -> dict:
     out: dict
         The user-corrected resume data.
     """
-    # TODO: instead of dumping entire resume, approach level by level (ie, pass resume dict and focus on values that are strings and recursively tackle values that are dicts or lists)
-    # if a value is a dict, do the same thing again
-    # if a value is a list, print elements and ask if they are correct
-    def layered_corrections(field: dict, path: list[str]=[]):
-        str_fields = []
-        dict_fields = []
-        list_fields = []
-
-        for key, value in field.items():
-            if isinstance(value, dict):
-                dict_fields.append(key)
-            elif isinstance(value, list):
-                list_fields.append(key)
-            else:
-                str_fields.append(key)
+    def correct_section(section, path: list[str]):
+        if isinstance(section, str):
+            print(f"/{'/'.join(path)}:".ljust(35) + section)
+            response = input(f"\t-> ")
+            if response != "":
+                return response
+        elif isinstance(section, list):
+            for i, item in enumerate(section):
+                section[i] = correct_section(item, path + [str(i)])
+        else:
+            for key, value in section.items():
+                section[key] = correct_section(value, path + [key])
         
-        # string fields
-        if len(str_fields) > 0:
-            print(f"String fields in {'/' + '/'.join(path)}:")
-            for key in str_fields:
-                print(f"\t\t{key}: {field[key]}")
-            print("\tEnter the field you would like to correct and the correction with an empty string to end the input: ")
-            while True:
-                f = input("\t\tField: ")
-                if f == '':
-                    break
-                c = input("\t\tCorrection: ")
-                try:
-                    field[f] = c
-                except:
-                    print("\tInvalid field. Please try again.")
 
-            with open("tmp_resume.json", "w") as f:
-                json.dump(resume, f, indent=4)
-
-        # list fields
-        if len(list_fields) == 0:
-            for key in list_fields:
-                if isinstance(field[key][0], dict):
-                    for i, item in enumerate(field[key]):
-                        layered_corrections(item, path + [key, str(i)])
-                else:
-                    print(f"List fields in {'/' + '/'.join(path + [key])}:")
-                    for i, item in enumerate(field[key]):
-                        print(f"\t\t{i}: {item}")
-                    print("\tEnter the index of the item you would like to correct and the correction with an empty string to end the input: ")
-                    while True:
-                        i = input("\t\tIndex: ")
-                        if i == '':
-                            break
-                        c = input("\t\tCorrection: ")
-                        try:
-                            field[key][int(i)] = c
-                        except:
-                            print("\tInvalid index. Please try again.")
-
-            with open("tmp_resume.json", "w") as f:
-                json.dump(resume, f, indent=4)
-
-        # dict fields
-        for key in dict_fields:
-            layered_corrections(field[key], path + [key])
-
-    with open("tmp_resume.json", "w") as f:
-        json.dump(resume, f, indent=4)
-
-    return layered_corrections(resume)
+    print("If no corrections need to be made, just hit enter to move on.")
+    for key, value in resume.items():
+        resume[key] = correct_section(value, [key])
 
 
 def improve_resume(client: anthropic.Anthropic, resume: dict) -> dict:
@@ -230,7 +180,7 @@ def compile_resume(resume: dict):
 
 
 if __name__ == "__main__":
-    print("Initializing Claude client...")
+    print("Initializing Anthropic client...")
     client = init_claude_client()
     print("Done!\n")
 
