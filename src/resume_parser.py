@@ -5,12 +5,12 @@ from pdfminer.high_level import extract_text
 import json
 
 
-def send_to_claude_ai(client, text):
+def send_to_claude_ai(client, message):
     message = client.messages.create(
         model="claude-3-sonnet-20240229",
         max_tokens=2048,
         messages=[
-            {"role": "user", "content": text}
+            {"role": "user", "content": message}
         ]
     )
 
@@ -23,7 +23,11 @@ def send_to_claude_ai(client, text):
 # TODO: test prompting, modularity, and error handling
 def parse_resume(client: anthropic.Anthropic, pdf_path: str):
     text = extract_text(pdf_path)
-    prompt = f"Please structure the following resume information into a JSON format: {text}"
+
+    template = None
+    with open("resume_template.json", "r") as f:
+        template = json.load(f)
+    prompt = "Please use the following structure: " + json.dumps(template) + " to structure the following resume information into the JSON format, returning only the JSON: " + text
     json_response = send_to_claude_ai(client, prompt)
 
     if json_response is None:
@@ -32,6 +36,8 @@ def parse_resume(client: anthropic.Anthropic, pdf_path: str):
 
     try:
         resume_data = json.loads(json_response)
+        with open("resume_parsed.json", "w") as f:
+            json.dump(resume_data, f, indent=4)
         return resume_data
     except json.JSONDecodeError as e:
         print("JSON decoding error:", e)

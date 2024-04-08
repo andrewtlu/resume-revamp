@@ -1,4 +1,5 @@
 import anthropic
+import aux
 import json
 import resume_compiler as rc
 import resume_parser as rp
@@ -80,10 +81,10 @@ def parse_resume(client: anthropic.Anthropic) -> tuple[dict, bool]:
             selection = select("Do you have a pre-parsed resume?", ["y", "n"])
             if selection == 0:
                 json_path = input("Please enter the path to the parsed resume: ")
-                return rp.load_resume(json_path)
+                return rp.load_resume(json_path), False
             elif selection == 1:
                 resume_path = input("Please enter the path to your resume pdf: ")
-                return rp.parse_resume(client, resume_path)
+                return rp.parse_resume(client, resume_path), True
             else: 
                 print("Invalid response. Please try again.")
         except FileNotFoundError:
