@@ -102,37 +102,73 @@ def correct_resume(resume: dict) -> dict:
     out: dict
         The user-corrected resume data.
     """
-    while True:
-        print(json.dumps(resume, indent=4))
-        selection = select("\nIs any of the above information incorrect?", ["y", "n"])
+    # TODO: instead of dumping entire resume, approach level by level (ie, pass resume dict and focus on values that are strings and recursively tackle values that are dicts or lists)
+    # if a value is a dict, do the same thing again
+    # if a value is a list, print elements and ask if they are correct
+    def layered_corrections(field: dict, path: list[str]=[]):
+        str_fields = []
+        dict_fields = []
+        list_fields = []
 
-        if selection == 0:
-            print("Please enter the key paths of all the fields in the following specifications:", 
-                  "\n\t1. Separate all fields via a forward slash (/),", 
-                  "\n\t2. Use the dictionary key displayed above for each field and index values for lists (ie, education/0/name selects the name of the first element of the education list), and",
-                  "\n\t3. Enter an empty string to finish.")
-            fields = []
-            while '' not in fields:
-                fields.append(input(f"Key path {len(fields)}: "))
-            fields.remove('')
+        for key, value in field.items():
+            if isinstance(value, dict):
+                dict_fields.append(key)
+            elif isinstance(value, list):
+                list_fields.append(key)
+            else:
+                str_fields.append(key)
+        
+        # string fields
+        if len(str_fields) > 0:
+            print(f"String fields in {'/' + '/'.join(path)}:")
+            for key in str_fields:
+                print(f"\t\t{key}: {field[key]}")
+            print("\tEnter the field you would like to correct and the correction with an empty string to end the input: ")
+            while True:
+                f = input("\t\tField: ")
+                if f == '':
+                    break
+                c = input("\t\tCorrection: ")
+                try:
+                    field[f] = c
+                except:
+                    print("\tInvalid field. Please try again.")
 
-            try:
-                for field in fields:
-                    path = [int(i) if i.isdigit() else i for i in field.split("/")]
-                    current = resume
-                    for key in path[:-1]:
-                        current = current[key]
-                    current[path[-1]] = input("What would you like to replace " + field + " (" + current[path[-1]] + ") with? ")
+            with open("tmp_resume.json", "w") as f:
+                json.dump(resume, f, indent=4)
 
-                    # store intermediate resume in case of error
-                    with open("./tmp_resume.json", "w") as json_file:
-                        json_file.write(json.dumps(resume, indent=4))
-            except:
-                print(f"Your provided keypath {field} is invalid. Please try again.")
-        elif selection == 1:
-            return resume
-        else:
-            print("Invalid response. Please try again.")
+        # list fields
+        if len(list_fields) == 0:
+            for key in list_fields:
+                if isinstance(field[key][0], dict):
+                    for i, item in enumerate(field[key]):
+                        layered_corrections(item, path + [key, str(i)])
+                else:
+                    print(f"List fields in {'/' + '/'.join(path + [key])}:")
+                    for i, item in enumerate(field[key]):
+                        print(f"\t\t{i}: {item}")
+                    print("\tEnter the index of the item you would like to correct and the correction with an empty string to end the input: ")
+                    while True:
+                        i = input("\t\tIndex: ")
+                        if i == '':
+                            break
+                        c = input("\t\tCorrection: ")
+                        try:
+                            field[key][int(i)] = c
+                        except:
+                            print("\tInvalid index. Please try again.")
+
+            with open("tmp_resume.json", "w") as f:
+                json.dump(resume, f, indent=4)
+
+        # dict fields
+        for key in dict_fields:
+            layered_corrections(field[key], path + [key])
+
+    with open("tmp_resume.json", "w") as f:
+        json.dump(resume, f, indent=4)
+
+    return layered_corrections(resume)
 
 
 if __name__ == "__main__":
@@ -143,7 +179,7 @@ if __name__ == "__main__":
     resume = parse_resume(client)
     print("Resume parsed/loaded successfully.\n")
 
-    print("Now, let's double check to ensure our copy matches yours!\n")
+    print("Now, let's double check to ensure our copy matches yours!")
     resume = correct_resume(resume)
     messages = []
 

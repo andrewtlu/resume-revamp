@@ -1,0 +1,135 @@
+{
+    "firstName": "Andrew Lu",
+    "nickname": "cadido",
+    "lastName": "Lu",
+    "emoryEmail": "andrew.lu@emory.edu",
+    "phone": "+1 (404) 786-6427",
+    "linkedin": "linkedin.com/in/andrewtlu",
+    "education": [
+        {
+            "institution": "Emory University, Goizueta Business School",
+            "degree": "Bachelor of Business Administration, Strategy & Management Consulting, Double Major: Economics",
+            "graduationDate": "May 2025",
+            "gpa": "3.6/4.0",
+            "honors": [
+                "Dean's List Fall 2022 and Spring 2023",
+                "Phi Eta Sigma\u2014a freshman honor society"
+            ],
+            "relevantCourses": [
+                "Leading & Managing Change",
+                "Competitive Advantage",
+                "Negotiations",
+                "Decision Tools & Visualization"
+            ],
+            "location": "Atlanta, GA"
+        },
+        {
+            "institution": "Emory University, Oxford College",
+            "degree": "Associate of Arts",
+            "graduationDate": "May 2023",
+            "location": "Oxford, GA"
+        },
+        {
+            "institution": "University of Economics",
+            "relevantCourses": [
+                "International Management",
+                "Supply Chain",
+                "Operations Research"
+            ],
+            "location": "Prague, Czech Republic",
+            "semester": "Fall 2022"
+        }
+    ],
+    "workExperience": [
+        {
+            "company": "Emory University, Goizueta Business School",
+            "position": "Teaching Assistant, Organization & Management",
+            "startDate": "Aug. 2023",
+            "endDate": "Present",
+            "location": "Atlanta, GA",
+            "responsibilities": [
+                "Lead content review sessions for groups of 20 to 30 students to enhance learning in introductory consulting course",
+                "Review student assignments for three class sections and provide written feedback to clarify concepts"
+            ]
+        },
+        {
+            "company": "American Express, Global Merchant Services",
+            "position": "Payment Security & Emerging Payments Intern",
+            "startDate": "Jun. 2023",
+            "endDate": "Aug. 2023",
+            "location": "Virtual & In-Person, New York, NY",
+            "responsibilities": [
+                "Created and provided recommendations for new forecasting methodologies of Discount Business Volume models, which account for over 70% of AMEX revenue, resulting in improved accuracy and streamlining of monthly processes",
+                "Assessed Canadian volumes by city, industry, and economic factors to explain trends and isolate areas of growth and decline; communicated insights to business teams to help guide their business strategy",
+                "Analyzed and calculated the dollar impact of catastrophic events such as the Oklahoma tornadoes and Calgary floods"
+            ]
+        },
+        {
+            "company": "WellCare Health Plans",
+            "position": "Finance & Planning Analyst Intern",
+            "startDate": "Jun. 2022",
+            "endDate": "Aug. 2022",
+            "location": "Virtual",
+            "responsibilities": [
+                "Performed cost analysis of the company's paper consumption and designed initiatives to save $50K in year one",
+                "Oversaw a team of five interns for three pilot Micro Market locations; process included contracting bids, negotiating with vendors, and developing satisfaction surveys for 4,000 associates",
+                "Developed a transformation initiative for all current vending machines to have 35% healthy choice items"
+            ]
+        }
+    ],
+    "leadership": [
+        {
+            "organization": "Project Shine of Emory University",
+            "position": "Site Coordinator, Volunteer ESL Tutor",
+            "startDate": "Aug. 2022",
+            "endDate": "Present",
+            "responsibilities": [
+                "Utilize Spanish language skills to teach English to diverse groups of 5-30 immigrants and refugees of all ages",
+                "Coordinate 15 volunteers and organized monthly reflection meetings to promote cultural awareness"
+            ]
+        },
+        {
+            "organization": "John R. Lewis Case Competition",
+            "position": "Team Member",
+            "startDate": "Oct. 2022",
+            "endDate": "Feb. 2023",
+            "responsibilities": [
+                "Collaborated with six team members to address racial justice issues for a Fortune 300 company",
+                "Employed research methods to offer approaches the company can take to be more diverse and inclusive"
+            ]
+        },
+        {
+            "organization": "Undergraduate Business Student Leadership Conference (UBSLC)",
+            "position": "Registration Chair",
+            "startDate": "Dec. 2022",
+            "endDate": "Feb. 2023",
+            "responsibilities": [
+                "Communicated with 42 top business schools around the world to increase level of attendance by 22%",
+                "Managed a database of 82 participants' payment and arrival information to facilitate conference logistics"
+            ]
+        }
+    ],
+    "additionalInformation": {
+        "otherActivities": [
+            "Emory Varsity Basketball",
+            "Emory Student Ambassador",
+            "ASCEND",
+            "Volunteer Emory"
+        ],
+        "honorsAndAwards": [
+            "Eagle Scout",
+            "Student Ambassador of the Year",
+            "Business Research Certification"
+        ],
+        "skills": [
+            "Proficient in MS Office, Risk Optimizer, LexusNexus, Java, Bloomberg Terminal, Google AdWords",
+            "Spanish (Fluent)"
+        ],
+        "interests": [
+            "Baking",
+            "Travel (Spain, Brazil, London)",
+            "Piano",
+            "Triathlons (Ironman 70.3 Miami)"
+        ]
+    }
+}
