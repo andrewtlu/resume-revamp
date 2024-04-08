@@ -151,7 +151,7 @@ def improve_resume(client: anthropic.Anthropic, resume: dict) -> dict:
 
     message = client.messages.create(
         model="claude-3-sonnet-20240229",
-        max_tokens=256,
+        max_tokens=1024,
         system="Approach the prompt as if you are a helpful hiring manager reviewing a resume.",
         messages=messages
     )

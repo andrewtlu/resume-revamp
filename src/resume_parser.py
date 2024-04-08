@@ -1,5 +1,5 @@
 from dotenv import load_dotenv
-import os
+import re
 import anthropic
 from pdfminer.high_level import extract_text
 import json
@@ -8,7 +8,7 @@ import json
 def send_to_claude_ai(client, message):
     message = client.messages.create(
         model="claude-3-sonnet-20240229",
-        max_tokens=2048,
+        max_tokens=4096,
         messages=[
             {"role": "user", "content": message}
         ]
@@ -27,7 +27,7 @@ def parse_resume(client: anthropic.Anthropic, pdf_path: str):
     template = None
     with open("resume_template.json", "r") as f:
         template = json.load(f)
-    prompt = "Please use the following structure: " + json.dumps(template) + " to structure the following resume information into the JSON format, returning only the JSON: " + text
+    prompt = "Use the strict following JSON structure " + json.dumps(template) + " (no unspecified fields, filling unknowns with 'none') to structure the following resume information into the JSON format: " + text
     json_response = send_to_claude_ai(client, prompt)
 
     if json_response is None:
@@ -35,13 +35,13 @@ def parse_resume(client: anthropic.Anthropic, pdf_path: str):
         return None
 
     try:
-        resume_data = json.loads(json_response)
+        resume_data = json.loads(re.sub(r"^[^{]*", "", json_response).strip(" `"))
         with open("resume_parsed.json", "w") as f:
             json.dump(resume_data, f, indent=4)
         return resume_data
     except json.JSONDecodeError as e:
         print("JSON decoding error:", e)
-        print("Problematic JSON string:", json_response)
+        print("Problematic JSON string:", re.sub(r"^.*?{", "{", json_response).strip(" `"))
         return None
 
 
