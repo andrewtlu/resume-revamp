@@ -39,6 +39,11 @@ def parse_resume(client: anthropic.Anthropic, pdf_path: str):
         return None
 
 
+def load_resume(json_path: str):
+    with open(json_path, "r") as json_file:
+        return json.load(json_file)
+
+
 if __name__ == "__main__":
     # init client
     load_dotenv()
