@@ -102,31 +102,37 @@ def correct_resume(resume: dict) -> dict:
     out: dict
         The user-corrected resume data.
     """
-    # for each entry:
-    # print current key path (ie, education > school > classes)
-    # print current value
-    # prompt user to confirm or correct
-    # end loop
-    def correct_recursive(resume: dict|list|str, key_path: list[str]=[]) -> dict|list|str:
-        if type(resume) == str:
-            while True:
-                print("\nField: " + " > ".join(key_path) + ":", resume)
-                selection = select(f"Is the above information correct?", ["y", "n"])
-                if selection == 0:
-                    break
-                elif selection == 1:
-                    return input(f"Please enter the correct value for {' > '.join(key_path)}: ")
-                else:
-                    print("Invalid response. Please try again.")
-        elif type(resume) == dict:
-            for key, value in resume.items():
-                resume[key] = correct_recursive(value, key_path + [key])
-        else: # type(resume) == list
-            for i, value in enumerate(resume):
-                resume[i] = correct_recursive(value, key_path + [str(i)])
-    
-    
-    return correct_recursive(resume)
+    while True:
+        print(json.dumps(resume, indent=4))
+        selection = select("\nIs any of the above information incorrect?", ["y", "n"])
+
+        if selection == 0:
+            print("Please enter the key paths of all the fields in the following specifications:", 
+                  "\n\t1. Separate all fields via a forward slash (/),", 
+                  "\n\t2. Use the dictionary key displayed above for each field and index values for lists (ie, education/0/name selects the name of the first element of the education list), and",
+                  "\n\t3. Enter an empty string to finish.")
+            fields = []
+            while '' not in fields:
+                fields.append(input(f"Key path {len(fields)}: "))
+            fields.remove('')
+
+            try:
+                for field in fields:
+                    path = [int(i) if i.isdigit() else i for i in field.split("/")]
+                    current = resume
+                    for key in path[:-1]:
+                        current = current[key]
+                    current[path[-1]] = input("What would you like to replace " + field + " (" + current[path[-1]] + ") with? ")
+
+                    # store intermediate resume in case of error
+                    with open("./tmp_resume.json", "w") as json_file:
+                        json_file.write(json.dumps(resume, indent=4))
+            except:
+                print(f"Your provided keypath {field} is invalid. Please try again.")
+        elif selection == 1:
+            return resume
+        else:
+            print("Invalid response. Please try again.")
 
 
 if __name__ == "__main__":
@@ -137,13 +143,13 @@ if __name__ == "__main__":
     resume = parse_resume(client)
     print("Resume parsed/loaded successfully.\n")
 
-    print("Now, let's double check to ensure our copy matches yours!")
+    print("Now, let's double check to ensure our copy matches yours!\n")
     resume = correct_resume(resume)
     messages = []
 
     # DONE input resume path
     # DONE parse resume, convert to json
-    # double check if parsing is correct
+    # DONE double check if parsing is correct
     # initial prompt to claude to read resume and identify weaknesses
     # display weaknesses, select which to improve
     # also prompt with other goals (rewording, etc.)
