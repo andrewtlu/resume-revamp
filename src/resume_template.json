@@ -1,0 +1,64 @@
+{
+    "header": {
+        "name": "John Doe",
+        "address": "1234 Elm St, Springfield, IL 62701",
+        "email": "john.doe@email.com",
+        "phone": "555-555-5555",
+        "website": "johndoe.com"
+    },
+    "education": [
+        {
+            "school": "University of Illinois",
+            "degree": "Bachelor of Science in Computer Science, Minor in Mathematics",
+            "start": "August 2016",
+            "end": "May 2020",
+            "gpa": "3.5/4.0",
+            "details": [
+                "Relevant Coursework: Data Structures, Algorithms, Web Development"
+            ]
+        }
+    ],
+    "experience": [
+        {
+            "company": "Google",
+            "position": "Software Engineer Intern",
+            "location": "Mountain View, CA",
+            "start": "April 2020",
+            "end": "Present",
+            "description": [
+                "Worked on the development of new features for Google's search engine."
+            ]
+        }
+    ],
+    "projects": [
+        {
+            "name": "Personal Website",
+            "description": [
+                "Designed and developed a personal website to showcase my projects and skills."
+            ],
+            "technologies": ["HTML", "CSS", "JavaScript"]
+        }
+    ],
+    "extracurriculars": [
+        {
+            "organization": "Hack4Impact",
+            "position": "Member",
+            "location": "Champaign, IL",
+            "start": "August 2018",
+            "end": "May 2020",
+            "description": [
+                "Participated in hackathons and worked on projects for non-profit organizations."
+            ]
+        }
+    ],
+    "other": [
+        {
+            "title": "Skills",
+            "content": ["Java", "Python", "JavaScript", "HTML", "CSS", "SQL"]
+        },
+        {
+            "title": "Interests",
+            "content": ["Guitar", "Linux"]
+        }
+    ]
+}

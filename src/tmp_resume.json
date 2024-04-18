@@ -1,21 +1,20 @@
 {
     "header": {
-        "name": "John Doe",
-        "address": "1234 Elm St, Springfield, IL 62701",
-        "email": "john.doe@email.com",
-        "phone": "(555) 555-5555",
-        "website": "johndoe.github.io"
+        "name": "Andrew Lu",
+        "address": "1762 Clifton Rd NE MSC 221290, Atlanta, GA 30322",
+        "email": "andrew.lu@emory.edu",
+        "phone": "(404) 786-6427",
+        "website": "andrewtlu.github.io"
     },
     "education": [
         {
             "school": "Emory University",
             "degree": "Bachelor of Science in Computer Science, Minor in Applied Math",
-            "start": "August 2022",
-            "end": "Present",
-            "gpa": "3.8/4.0",
+            "graduation": "August 2022 \u2013 Present",
+            "gpa": "4.0/4.0",
             "details": [
-                "Dean's List: Spring 2023, Fall 2023",
-                "Relevant Coursework: Data Structs. and Alg., Comp. Arch., Algs., Lin. Alg., ML, Comp. Ling.",
+                "Dean's List: Fall 2022, Spring 2023, Fall 2023",
+                "Relevant Coursework: Data Structs. and Alg., Comp. Arch., Algs., Lin. Alg., ML, Comp. Ling., Data Mining, Practicum",
                 "Awards/Distinctions: Phi Eta Sigma Honor Society, National Merit Scholar"
             ]
         }
@@ -39,7 +38,7 @@
             "start": "June 2023",
             "end": "July 2023",
             "description": [
-                "Reduced service response latency by 60% (~400 ms) by implementing a custom configurable time-to-live HTTP cache in order to create a more responsive experience for 5m+ users across 60,000+ Discord servers",
+                "Reduced service response latency by 60% (~400 ms) by implementing a custom configurable time-to-live HTTP cache in order to create a more responsive experience for 5m+ BibleBot users across 60,000+ Discord servers",
                 "Decreased HTML and JSON cache usage by 99% and 39% by creating custom middleware to strip stored responses",
                 "Leveraged knowledge in Java, MVC, REST, and Git to learn and work in C# with the ASP.NET framework"
             ]
@@ -76,18 +75,31 @@
                 "Git",
                 "Google Maps/Routes API"
             ]
+        },
+        {
+            "name": "Voice Calculator",
+            "description": [
+                "Developed a hands-free calculator as proof-of-concept for a lightweight deployable voice-controlled application",
+                "Created modular grammar regular expressions to improve speech detection accuracy in noisy environments"
+            ],
+            "technologies": [
+                "Java",
+                "Sphinx4",
+                "MaryTTS"
+            ]
         }
     ],
     "extracurriculars": [
         {
             "organization": "Project Emory",
-            "position": "Educational Director",
+            "position": "Cofounder/Secretary",
             "location": "Atlanta, GA",
             "start": "May 2023",
             "end": "Present",
             "description": [
                 "Craft engaging Spring Boot, MongoDB, and Git curriculum to enhance the technical proficiency of 20+ members",
-                "Provide working CS experience to 30+ students by establishing and running Emory's only open project-building club"
+                "Provide working CS experience to 30+ students by establishing and running Emory's only open project-building club",
+                "Mentor 2 CS students by providing peer-programming opportunities, coursework guidance, and pre-professional help aimed to contribute to their overall success in software engineering"
             ]
         },
         {

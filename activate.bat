@@ -6,7 +6,6 @@ IF NOT EXIST .venv (
     call .venv\Scripts\activate
     python -m pip install --upgrade pip
     python -m pip install -r requirements.txt
-    where python
 ) ELSE (
     call .venv\Scripts\activate
     where python

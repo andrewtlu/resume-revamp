@@ -1,35 +1,33 @@
 from dotenv import load_dotenv
-import os
+import re
 import anthropic
 from pdfminer.high_level import extract_text
 import json
 
-load_dotenv()
 
-def initialize_anthropic_client():
-    api_key = os.getenv('ANTHROPIC_API_KEY')
-    if api_key is None:
-        raise ValueError("The ANTHROPIC_API_KEY is not set in the environment variables.")
-    return anthropic.Anthropic(api_key=api_key)
-
-def send_to_claude_ai(client, text):
+def send_to_claude_ai(client, message):
     message = client.messages.create(
-        model="claude-3-opus-20240229",
-        max_tokens=2048,
+        model="claude-3-sonnet-20240229",
+        max_tokens=4096,
         messages=[
-            {"role": "user", "content": text}
+            {"role": "user", "content": message}
         ]
     )
 
-    concatenated_text = ''
+    concatenated_text = ""
     if isinstance(message.content, list):
-        concatenated_text = ''.join([cb.text for cb in message.content if hasattr(cb, 'text')])
+        concatenated_text = "".join([cb.text for cb in message.content if hasattr(cb, "text")])
     return concatenated_text
 
-def parse_resume(pdf_path):
+
+# TODO: test prompting, modularity, and error handling
+def parse_resume(client: anthropic.Anthropic, pdf_path: str):
     text = extract_text(pdf_path)
-    prompt = f"Please structure the following resume information into a JSON format: {text}"
-    client = initialize_anthropic_client()
+
+    template = None
+    with open("resume_template.json", "r") as f:
+        template = json.load(f)
+    prompt = "Use the strict following JSON structure " + json.dumps(template) + " (no unspecified fields, filling unknowns with 'none') to structure the following resume information into the JSON format: " + text
     json_response = send_to_claude_ai(client, prompt)
 
     if json_response is None:
@@ -37,20 +35,32 @@ def parse_resume(pdf_path):
         return None
 
     try:
-        resume_data = json.loads(json_response)
+        resume_data = json.loads(re.sub(r"^[^{]*", "", json_response).strip(" `"))
+        with open("resume_parsed.json", "w") as f:
+            json.dump(resume_data, f, indent=4)
         return resume_data
     except json.JSONDecodeError as e:
         print("JSON decoding error:", e)
-        print("Problematic JSON string:", json_response)
+        print("Problematic JSON string:", re.sub(r"^.*?{", "{", json_response).strip(" `"))
         return None
 
-client = initialize_anthropic_client()
-pdf_path = "./resume.pdf"
-resume_json = parse_resume(pdf_path)
 
-if resume_json is not None:
-    print(resume_json)
-    with open("./resume_parsed.json", "w") as json_file:
-        json_file.write(json.dumps(resume_json))
-else:
-    print("Failed to parse the resume.")
+def load_resume(json_path: str):
+    with open(json_path, "r") as json_file:
+        return json.load(json_file)
+
+
+if __name__ == "__main__":
+    # init client
+    load_dotenv()
+    client = anthropic.Anthropic()
+
+    pdf_path = "./resume.pdf"
+    resume_json = parse_resume(client, pdf_path)
+
+    if resume_json is not None:
+        print(resume_json)
+        with open("./resume_parsed.json", "w") as json_file:
+            json_file.write(json.dumps(resume_json, indent=4))
+    else:
+        print("Failed to parse the resume.")
