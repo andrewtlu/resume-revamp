@@ -81,7 +81,7 @@ def generate_resume_latex(template_file, json_file, output_file):
 \\textbf{{{experience['company']}}} \\hfill {experience['location']}\\\\
 \\emph{{{experience['position']}}} \\hfill {experience['start']} -- {experience['end']}
 \\begin{{itemize}}
-    {"\n\t".join([f"\\item {responsibility}" for responsibility in experience['description']])}
+    {' '.join([f"\\item {responsibility}" for responsibility in experience['description']])}
 \\end{{itemize}}
 """
     work_experience_section += f"\n \\vspace{{-\\baselineskip}}"
@@ -100,7 +100,7 @@ def generate_resume_latex(template_file, json_file, output_file):
 \\noindent
 \\textbf{{{project['name']}}}
 \\begin{{itemize}}
-    {"\n\t".join([f"\\item {description}" for description in project['description']])}
+    {" ".join([f"\\item {description}" for description in project['description']])}
 \\end{{itemize}}
 \\emph{{Technologies:}} {', '.join(project['technologies'])}
 """
@@ -121,7 +121,7 @@ def generate_resume_latex(template_file, json_file, output_file):
 \\textbf{{{extracurricular['organization']}}} \\hfill {extracurricular['location']} \\\\
 \\emph{{{extracurricular['position']}}} \\hfill {extracurricular['start']} -- {extracurricular['end']}
 \\begin{{itemize}}
-    {"\n\t".join([f"\\item {descriptor}" for descriptor in extracurricular['description']])}
+    {" ".join([f"\\item {descriptor}" for descriptor in extracurricular['description']])}
 \\end{{itemize}}
 """
     extracurriculars_section += f"\n \\vspace{{-\\baselineskip}}"
