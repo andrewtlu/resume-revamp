@@ -1,0 +1,21 @@
+{
+    "other": [
+        {
+            "title": "Software",
+            "content": [
+                "(proficient): Java, Git, JavaScript/TypeScript, HTML/CSS, Python",
+                "(familiar): Shell, C, C#, Go"
+            ]
+        },
+        {
+            "title": "Interests",
+            "content": [
+                "Backpacking",
+                "Volleyball",
+                "Technical/Modded Minecraft",
+                "Linux",
+                "Performance Arts (Oboe and Guitar)"
+            ]
+        }
+    ]
+}
