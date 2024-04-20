@@ -1,9 +1,10 @@
 import anthropic
-import aux
+# import aux
 import json
 import resume_compiler as rc
 import resume_parser as rp
 from dotenv import load_dotenv
+import json_to_tex as jt
 
 
 # # example message from claude 3
@@ -147,36 +148,72 @@ def improve_resume(client: anthropic.Anthropic, resume: dict) -> dict:
     # display weaknesses, select which to improve
     messages = []
     # TODO: augment prompt to ask for returning json strengths/weaknesses and proposed improvements (ie, rewording, etc.)
-    messages.append(create_user_message("Given the following resume in JSON format, what are some strengths and weaknesses that you see?\n" + json.dumps(resume)))
+    prompt = f"""{{ "instructions": "please be critical and review the following resume content and provide an edited version with the following improvements:",
+            "improvements": [
+                "Rephrase descriptions for clarity and impact.",
+                "Restructure descriptions for better flow and readability.",
+                "in a separate key called 'more_information' outside resume content, add the company name to the list if and only if the descriptions need more information.",
+                "Do not add more keys, use only those available."
+            ],
+            "request": "Please return the edited resume content in JSON format.",
+            "resume_content": "[
+                {json.dumps(resume)},
+            ]"
+            }}"""
 
-    message = client.messages.create(
+
+    messages.append(create_user_message(prompt))
+
+    response = client.messages.create(
         model="claude-3-sonnet-20240229",
-        max_tokens=1024,
-        system="Approach the prompt as if you are a helpful hiring manager reviewing a resume.",
+        max_tokens=4096,
+        system="You are an expert resume consultant.",
+        temperature=0.9,
         messages=messages
     )
+
 
     # start cycle
     # prompt for suggestions to fix weaknesses, display to user
     # select chosen improvements and save, continue to next cycle
 
+    print(response.content[0].text)
+
+    convert_json_to_tex(response)
+
     pass
 
 
-def compile_resume(resume: dict):
+def convert_json_to_tex(resume: dict):
     """
-    Compile the resume.
+    Convert the resume data to tex format
 
     Parameters:
     -----------
     resume : dict
         The improved resume data.
     """
-    with open(input("Compiled resume json path: "), "w") as f:
+    with open("/Users/andrewchung/Desktop/resume-revamper/src/save_message.json", "w") as f:
         json.dump(resume, f, indent=4)
 
-    # TODO: connect with compiler
-    # rc.compile_resume(resume)
+    jt.json_to_tex('/resume-revamper/dat/resume_template/bba_resume_template.tex',"/src/save_message.json", "/src/compiled.tex")
+
+    pass
+
+def compile_resume(filepath: str):
+    """
+    Compile the resume from tex to PDF
+
+    Parameters:
+    -----------
+    resume : dict
+        The improved resume data.
+    """
+
+    rc.compile_latex(input(filepath))
+
+    pass
+
 
 
 if __name__ == "__main__":
@@ -192,10 +229,10 @@ if __name__ == "__main__":
         resume = correct_resume(resume)
 
     print("Awesome! Let's get started on improving your resume!\n")
-    resume = improve_resume(client, resume)
+    improve_resume(client, resume)
 
     print("Now that youre resume is looking great, let's compile it!")
-    compile_resume(resume)
+    compile_resume('/resume-revamper/src/compiled.tex')
     print("Resume compiled successfully! To view the compiled resume, check the path you entered. To continue improving this iteration of your resume, rerun this program and load the compiled resume json for best performance!")
 
     # DONE input resume path

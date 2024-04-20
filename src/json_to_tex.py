@@ -166,8 +166,8 @@ def generate_resume_latex(template_file, json_file, output_file):
         file.write(template)
 
 
-if __name__ == "__main__":
-    #TODO fix these paths for general use
-    template_file_path = "dat/resume_template/bba_resume_template.tex"
-    json_file_path = "src/tmp_resume.json"
-    generate_resume_latex(template_file_path, json_file_path, 'dat/output/resume_latex.tex')
+# if __name__ == "__main__":
+#     #TODO fix these paths for general use
+#     template_file_path = "dat/resume_template/bba_resume_template.tex"
+#     json_file_path = "src/tmp_resume.json"
+#     generate_resume_latex(template_file_path, json_file_path, 'dat/output/resume_latex.tex')
