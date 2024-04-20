@@ -1,0 +1,26 @@
+{
+    "extracurriculars": [
+        {
+            "organization": "Project Emory",
+            "position": "Educational Director",
+            "location": "Atlanta, GA",
+            "start": "May 2023",
+            "end": "Present",
+            "description": [
+                "Craft engaging Spring Boot, MongoDB, and Git curriculum to enhance the technical proficiency of 20+ members",
+                "Provide working CS experience to 30+ students by establishing and running Emory's only open project-building club"
+            ]
+        },
+        {
+            "organization": "Emory Hack4Impact",
+            "position": "Software Engineer",
+            "location": "Atlanta, GA",
+            "start": "December 2023",
+            "end": "Present",
+            "description": [
+                "Design and develop an internal operations webpage including an announcements board, HR service page, personal dashboard, and resources page to provide Odyssey Family Consulting Center with a unified employee experience",
+                "Leverage knowledge in Figma to design pages based on client specifications and JavaScript to implement pages"
+            ]
+        }
+    ]
+}
