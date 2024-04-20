@@ -1,0 +1,28 @@
+.App {
+  text-align: center;
+  background-color: #282c34;
+  color: white;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.App-header {
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.App-main {
+  flex: 1; /* This will allow the main content to expand */
+  width: 90%; /* Adjust width as necessary, can be up to 100% if you want */
+  max-width: 960px; /* Set a max-width if you want to restrict content width */
+  margin: 0 auto; /* This will center your main content if less than 100% width */
+  padding: 20px; /* Add padding if necessary */
+  box-sizing: border-box; /* Include padding in the width */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Keeps children centered */
+}
