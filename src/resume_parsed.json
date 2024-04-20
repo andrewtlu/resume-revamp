@@ -51,6 +51,7 @@
             "description": [
                 "Researched, designed, and developed a personal portfolio website in order to showcase skills and learn front-end technology and design best-practices to support Project Emory and RIDEmory's front-end/design team"
             ],
+            "website": "https://johndoe.github.io",
             "technologies": [
                 "React + Vite",
                 "TypeScript",
@@ -67,6 +68,7 @@
                 "Guided engineers through MongoDB GeoJSON indexing to filter search for nearby rides and current traffic times",
                 "Used Java and Spring Boot to teach MVC/REST and promote collaboration within the project's back-end team"
             ],
+            "website": "https://ridemory.com",
             "technologies": [
                 "Java/Spring Boot",
                 "MongoDB Atlas",
