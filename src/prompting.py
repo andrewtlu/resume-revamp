@@ -110,7 +110,7 @@ def initial_prompt(client: anthropic.Anthropic, resume: dict, key: str) -> dict:
                 "Utilize Active Voice.",
                 "Use strong action verbs.",
                 "Use quantifiable data.",
-                
+
             ],
             "request": "Please return the edited resume content in JSON format.",
             "resume_content": "[
@@ -172,6 +172,9 @@ def sub_prompts(client: anthropic.Anthropic, resume: dict, key: str, user_input:
             "Restructure descriptions for better flow and readability.",
             "Strictly use the provided JSON format f{template}.",
             "Use 3 or 4 bullet points for each topic.",
+            "Utilize Active Voice.",
+            "Use strong action verbs.",
+            "Use quantifiable data.",
         ],
         "user_feedback": "{user_input}",
         "request": "Please return the edited resume content in JSON format.",
@@ -247,4 +250,5 @@ if __name__ == "__main__":
 
     print("Awesome! Let's get started on improving your resume!\n")
     # print(resume)
-    sub_prompts(claude, resume, "projects", "I like my descriptions for RIDEmory so don't change that. regenerate the description for my personal website.")
+    initial_prompt(claude, resume, "projects")
+    # sub_prompts(claude, resume, "projects", "I like my descriptions for RIDEmory so don't change that. regenerate the description for my personal website.")
