@@ -1,0 +1,35 @@
+{
+    "projects": [
+        {
+            "name": "Personal Website",
+            "description": [
+                "Researched, designed, and developed a personal portfolio website in order to showcase skills and learn front-end technology and design best-practices to support Project Emory and RIDEmory's front-end/design team"
+            ],
+            "technologies": [
+                "React + Vite",
+                "TypeScript",
+                "HTML/CSS",
+                "Figma",
+                "Git",
+                "Firefox/Chrome Developer Tools"
+            ]
+        },
+        {
+            "name": "RIDEmory",
+            "description": [
+                "Build a comprehensive rideshare solution for Emory's students through a self-updating database of ride information",
+                "Guided engineers through MongoDB GeoJSON indexing to filter search for nearby rides and current traffic times",
+                "Used Java and Spring Boot to teach MVC/REST and promote collaboration within the project's back-end team"
+            ],
+            "technologies": [
+                "Java/Spring Boot",
+                "MongoDB Atlas",
+                "Python/Flask",
+                "React",
+                "Figma",
+                "Git",
+                "Google Maps/Routes API"
+            ]
+        }
+    ]
+}

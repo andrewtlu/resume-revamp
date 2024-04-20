@@ -1,0 +1,16 @@
+{
+"education": [
+    {
+        "school": "Emory University",
+        "degree": "Bachelor of Science in Computer Science, Minor in Applied Math",
+        "start": "August 2022",
+        "end": "Present",
+        "gpa": "3.8/4.0",
+        "details": [
+            "Dean's List: Spring 2023, Fall 2023",
+            "Relevant Coursework: Data Structs. and Alg., Comp. Arch., Algs., Lin. Alg., ML, Comp. Ling.",
+            "Awards/Distinctions: Phi Eta Sigma Honor Society, National Merit Scholar"
+        ]
+    }
+]
+}

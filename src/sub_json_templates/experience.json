@@ -1,0 +1,27 @@
+{
+"experience": [
+    {
+        "company": "Emory Libraries, Computing Center at Cox Hall",
+        "position": "Computing Center Technology Consultant",
+        "location": "Atlanta, GA",
+        "start": "August 2023",
+        "end": "Present",
+        "description": [
+            "Maintain friendly environment free of technical difficulties for students and faculty by managing CCCH's A/V system",
+            "Provide a secure, up-to-date online experience for 200+ students by servicing CCCH's 32 computers and 4 printers"
+        ]
+    },
+    {
+        "company": "Kerygma Digital",
+        "position": "Software Engineer",
+        "location": "Remote",
+        "start": "June 2023",
+        "end": "July 2023",
+        "description": [
+            "Reduced service response latency by 60% (~400 ms) by implementing a custom configurable time-to-live HTTP cache in order to create a more responsive experience for 5m+ users across 60,000+ Discord servers",
+            "Decreased HTML and JSON cache usage by 99% and 39% by creating custom middleware to strip stored responses",
+            "Leveraged knowledge in Java, MVC, REST, and Git to learn and work in C# with the ASP.NET framework"
+        ]
+    }
+]
+}
