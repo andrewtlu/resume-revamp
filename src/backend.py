@@ -35,9 +35,10 @@ def handle_sub_prompt():
 
     client = anthropic.Anthropic() 
 
+    with open('/Users/andrewchung/Desktop/resume-revamper/uploads/resume_parsed.json', 'r') as file:
+        json_string = file.read()
 
-
-    resume = data.get('resume', {})
+    resume = json.loads(json_string)
     key = data.get('key', '')
     response = pr.sub_prompts(client, resume, key)
 

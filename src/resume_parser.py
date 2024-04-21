@@ -36,7 +36,7 @@ def parse_resume(client: anthropic.Anthropic, pdf_path: str):
 
     try:
         resume_data = json.loads(re.sub(r"^[^{]*", "", json_response).strip(" `"))
-
+        print(json_response)
         #do not need this since we are using flask
         # with open("resume_parsed.json", "w") as f:
         #     json.dump(resume_data, f, indent=4)
@@ -57,7 +57,7 @@ if __name__ == "__main__":
     load_dotenv()
     client = anthropic.Anthropic()
 
-    pdf_path = "./resume.pdf"
+    pdf_path = "src/resume.pdf"
     resume_json = parse_resume(client, pdf_path)
 
     if resume_json is not None:
