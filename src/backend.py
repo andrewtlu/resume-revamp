@@ -27,7 +27,8 @@ def handle_regeneration():
 
     resume = data.get('resume', {})
     key = data.get('key', '')
-    response = pr.sub_prompts(client, resume, key, data) 
+    suggestion = data.get('suggestion', '')
+    response = pr.sub_prompts(client, resume, key, suggestion) 
 
     response_body = json.dumps({'refined_resume': response, 'message': "Resume edited successfully"}, indent=2)
     return Response(response_body, mimetype='application/json', status=200)
