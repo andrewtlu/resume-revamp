@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+from flask import Response
 import json
 import util
 import anthropic
@@ -71,7 +72,9 @@ def parse_resume_endpoint():
         
         os.remove(pdf_path)
 
-        return jsonify({'message': 'Resume parsed successfully', 'refinedResume': parsed_resume}), 200
+        print(parsed_resume)
+
+        return Response(json.dumps({'message': 'Resume parsed successfully', 'refinedResume': parsed_resume}, indent=2), mimetype='application/json', status=200), 200
     else:
         #TODO: new prompt for user to add the missing information
         # new prompt for user to add the missing information
