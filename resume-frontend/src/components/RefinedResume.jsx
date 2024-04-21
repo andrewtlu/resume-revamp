@@ -2,28 +2,48 @@ import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import './RefinedResume.css';
 
-function RefinedResume({ onRegenerate }) {
+function RefinedResume() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Retrieve the resume data from the location state or use a fallback
   const [resume, setResume] = useState(location.state?.resumeText || {});
-
-  // Initialize prompts based on the resume sections
   const [prompts, setPrompts] = useState(
     Object.keys(resume).reduce((acc, key) => ({ ...acc, [key]: '' }), {})
   );
 
-  // Handle the regeneration of individual sections
-  const handleRegenerate = async (section) => {
-    if (onRegenerate) {
-      const updatedSection = await onRegenerate(section, prompts[section]);
-      setResume((prev) => ({
-        ...prev,
-        [section]: updatedSection
-      }));
+const handleRegenerate = async (section) => {
+  const promptText = prompts[section];
+  if (!promptText.trim()) return; // Prevent empty prompt requests
+
+  try {
+    const response = await fetch('http://127.0.0.1:5000/regeneration', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        resume: resume,
+        key: section,
+        suggestion: promptText
+      })
+    });
+    console.log(resume[section], section, promptText)
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
     }
-  };
+
+    const result = await response.json();
+    console.log('Received from regeneration:', result.refined_resume); // Debug log
+    setResume((prev) => ({
+      ...prev,
+      [section]: result.refined_resume[section] // Update only the edited section
+    }));
+  } catch (error) {
+    console.error('Failed to regenerate section:', error);
+  }
+};
+
+
 
   // Handle changes in the prompt inputs
   const handlePromptChange = (section, value) => {

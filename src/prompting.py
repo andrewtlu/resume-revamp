@@ -174,7 +174,7 @@ def sub_prompts(client: anthropic.Anthropic, resume: dict, key: str, user_input:
     """
     # Load the JSON template for the specified section
     try:
-        with open(f"/Users/andrewchung/Desktop/resume-revamper/src/sub_json_templates/{key}.json", "r") as f:
+        with open(f"./sub_json_templates/{key}.json", "r") as f:
             template = json.load(f)
     except FileNotFoundError:
         print(f"Error: Template file for {key} not found.")

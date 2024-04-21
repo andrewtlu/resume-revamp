@@ -5,19 +5,19 @@
       "address": "855 Emory Point Dr, Atlanta, GA 30329",
       "email": "dinhviettung1011@gmail.com",
       "phone": "(470) 838-2162",
-      "website": "none"
+      "website": ""
     }
   ],
   "education": [
     {
       "school": "Emory University",
       "degree": "Bachelor of Science in Computer Science, Bachelor of Business Administration, Finance",
-      "start": "none",
+      "start": "",
       "end": "Expected May 2025",
       "gpa": "3.95",
       "details": [
-        "Undergraduate Coursework: Machine Learning, Software Engineering, Database Management, Computer Architecture, Object-oriented Programming, Artificial Intelligence, Statistical Computing",
-        "Certifications & Awards: Dean's List, Intermediate iOS Development Certification (CodePath), AWS Cloud Practitioner Course, Web Development Bootcamp"
+        "Pursued rigorous coursework in Machine Learning, Software Engineering, Database Management, Computer Architecture, Object-Oriented Programming, Artificial Intelligence, and Statistical Computing.",
+        "Achieved Dean's List recognition, Intermediate iOS Development Certification (CodePath), AWS Cloud Practitioner Course, and Web Development Bootcamp."
       ]
     }
   ],
@@ -25,27 +25,27 @@
     {
       "company": "Waystar",
       "position": "Software Engineer, Intern",
-      "location": "none",
+      "location": "",
       "start": "May 2023",
       "end": "August 2023",
       "description": [
         "Collaborated with senior engineers to develop a full-stack internal microservice for managing payments data using Go, Vue.js, and MySQL.",
-        "Implemented PHP scripts to automate data management processes, enhancing operational efficiency by 30%.",
-        "Demonstrated proficiency in Agile workflow, Docker, Kubernetes, AWS, Jenkins CI/CD, and testing procedures for efficient software delivery.",
+        "Automated data management processes by implementing PHP scripts, enhancing operational efficiency.",
+        "Demonstrated proficiency in Agile workflow, Docker, Kubernetes, AWS development practices, Jenkins CI/CD processes, and testing procedures for efficient software delivery.",
         "Executed data migrations and one-offs, fixing over 200 test cases for MySQL version update."
       ]
     },
     {
       "company": "Emory NLP Lab",
       "position": "NLP Researcher",
-      "location": "none",
+      "location": "",
       "start": "August 2023",
       "end": "Present",
       "description": [
-        "Collaborated with PhD candidates and professors to design the ConvoSense dataset, improving common sense understanding in NLP.",
-        "Built a Conversational AI model based on RAG framework, effectively integrating information from 12K+ university websites and 50+ departments.",
-        "Constructing a submission to NAACL 2024 on an LLM-based dynamic information extraction technique for enhancing Conversational Agent personability.",
-        "Reduced data collection costs by over 80% by building LLM-powered data generation pipelines for synthetic dialogues."
+        "Collaborated with PhD candidates and professors to design the ConvoSense dataset, aimed at improving common sense understanding in Natural Language Processing (NLP).",
+        "Built a Conversational AI model based on Retrieval Augmented Generation (RAG) framework, effectively pulling information from over 12K university websites and 50+ departments into a centralized platform for students and professors.",
+        "Constructing a submission to the 2024 North American Association of Computational Linguistics (NAACL) Conference on an LLM-based dynamic information extraction technique designed to improve the personability of Conversational Agent interactions.",
+        "Reduced data collection costs by over 80% by building LLM-powered data generation pipelines to generate synthetic dialogues."
       ]
     }
   ],
@@ -53,9 +53,9 @@
     {
       "name": "Eagle Rating [Group Project]",
       "description": [
-        "Led a team of 5 to develop a full-stack web application for Emory students to rate campus locations using Java Spring Boot and React.",
+        "Led a team of 5 to develop a full-stack web application platform where Emory students can provide ratings on campus places using Java Spring Boot and React.",
         "Implemented search by tags and filtering functions, enabling efficient data querying from MongoDB database.",
-        "Utilized Docker for consistent application operation and simplified deployment across environments."
+        "Utilized Docker to containerize the application, ensuring consistent operation across different environments and simplifying deployment processes."
       ],
       "technologies": [
         "React.js",
@@ -81,14 +81,14 @@
     {
       "name": "BlogSmart [Group Project]",
       "description": [
-        "Directed a team of 4 to design an iOS platform for composing AI-assisted blogs, research papers, and editorials using OpenAI's GPT-3.5.",
+        "Directed a team of 4 to design an iOS platform where users compose AI-assisted blogs, research papers, and editorials using OpenAI's GPT-3.5.",
         "Introduced an AI-driven peer review system for enhanced content quality and originality.",
         "Implemented CRUD functions using Parse Back4app DB to store user's blogs."
       ],
       "technologies": [
         "SwiftUI",
         "Parse Back4App DB",
-        "OpenAI API"
+        "OpenAIAPI"
       ]
     }
   ],
@@ -97,8 +97,8 @@
     {
       "title": "Skills",
       "content": [
-        "Languages: Python, Java, SQL, PHP, Go, JavaScript, CSS, R",
-        "Technologies: Docker, Kubernetes, Jenkins CI/CD, Jira, Node.js, React.js, MongoDB, AWS, Vue.js, Git"
+        "Languages: Python, Java, SQL, PHP, Go, JavaScript, CSS, R.",
+        "Technologies: Docker, Kubernetes, Jenkins CI/CD, Jira, Node.js, React.js, MongoDB, AWS, Vue.js, Git."
       ]
     },
     {
