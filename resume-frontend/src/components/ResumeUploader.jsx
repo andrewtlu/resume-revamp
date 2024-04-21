@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 function ResumeUploader() {
   const [file, setFile] = useState(null);
   const [fileName, setFileName] = useState('');
-  const [resumeText, setResumeText] = useState('');
+  const [isLoading, setIsLoading] = useState(false); // Added loading state
   const navigate = useNavigate();
 
   const handleFileChange = (event) => {
@@ -23,6 +23,8 @@ function ResumeUploader() {
       return;
     }
 
+    setIsLoading(true); // Start loading
+
     const formData = new FormData();
     formData.append('resume_pdf', file);
 
@@ -35,13 +37,13 @@ function ResumeUploader() {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const result = await response.json();
-      console.log('Parsed Resume JSON:', result.refinedResume); // This will log the result to the browser's console
-
-      setResumeText(result.refinedResume);
+      console.log('Parsed Resume JSON:', result.refinedResume);
       navigate('/refined', { state: { resumeText: result.refinedResume } });
     } catch (error) {
       console.error('Error uploading file:', error);
     }
+
+    setIsLoading(false); // Stop loading
   };
 
   return (
@@ -56,17 +58,14 @@ function ResumeUploader() {
             type="file"
             onChange={handleFileChange}
             accept=".pdf,.doc,.docx,.txt"
+            disabled={isLoading} // Disable input when loading
           />
-          <span className="file-name">{fileName || 'No file chosen'}</span>
+          <span className="file-name">{fileName || (isLoading ? 'Loading...' : 'No file chosen')}</span>
         </div>
-        <button type="submit" className="button-primary">Refine Resume</button>
+        <button type="submit" className="button-primary" disabled={isLoading}>
+          {isLoading ? 'Processing...' : 'Refine Resume'}
+        </button>
       </form>
-      {/*{resumeText && (*/}
-      {/*  <div className="resume-display">*/}
-      {/*    <h2>Refined Resume</h2>*/}
-      {/*    <p>{resumeText}</p>*/}
-      {/*  </div>*/}
-      {/*)}*/}
     </div>
   );
 }
