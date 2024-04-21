@@ -10,7 +10,7 @@ from flask_cors import CORS
 
 load_dotenv()
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
 app.config['MAX_CONTENT_LENGTH'] = 1 * 1024 * 1024 * 1024
 
 @app.route('/')

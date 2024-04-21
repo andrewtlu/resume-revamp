@@ -27,7 +27,8 @@ def parse_resume(client: anthropic.Anthropic, pdf_path: str):
     template = None
     # dont delete this, it is easier fo rme to test isntead of deleting file path every time
     path_for_andrew = '/Users/andrewchung/Desktop/resume-revamper/src/resume_template.json'
-    with open(path_for_andrew, "r") as f:
+    path = './resume_template.json'
+    with open(path, "r") as f:
         template = json.load(f)
     prompt = "Use the strict following JSON structure " + json.dumps(template) + " (no unspecified fields, filling unknowns with 'none') to structure the following resume information into the JSON format: " + text
     json_response = send_to_claude_ai(client, prompt)

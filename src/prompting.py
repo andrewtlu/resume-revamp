@@ -99,7 +99,7 @@ def initial_prompt(client: anthropic.Anthropic, resume: dict) -> dict:
 
     messages = []
     
-    with open(f"/Users/andrewchung/Desktop/resume-revamper/src/resume_template.json", "r") as f:
+    with open(f"./resume_template.json", "r") as f:
         template = json.load(f)
 
     prompt = f"""{{ "instructions": "please be critical while reviewing the resume and provide an edited version with the following improvements:",
