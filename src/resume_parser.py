@@ -9,6 +9,7 @@ def send_to_claude_ai(client, message):
     message = client.messages.create(
         model="claude-3-sonnet-20240229",
         max_tokens=4096,
+        temperature=0.5,
         messages=[
             {"role": "user", "content": message}
         ]
@@ -29,7 +30,19 @@ def parse_resume(client: anthropic.Anthropic, pdf_path: str):
     path_for_andrew = '/Users/andrewchung/Desktop/resume-revamper/src/resume_template.json'
     with open(path_for_andrew, "r") as f:
         template = json.load(f)
-    prompt = "Use the strict following JSON structure " + json.dumps(template) + " (no unspecified fields, filling unknowns with 'none') to structure the following resume information into the JSON format: " + text
+    # prompt = "Use the strict following JSON structure " + json.dumps(template) + " (no unspecified fields, filling unknowns with 'none') to structure the following resume information into the JSON format: " + text
+
+    prompt =f""" {{
+            "instruction": "Use the strict following JSON structure: {json.dumps(template)} to structure resumeInformation.",
+            "instructions": [
+                "Use only specified fields.",
+                "Leave Unknowns Blank.",
+                "Use the JSON structure provided.",
+            ] 
+            "resumeInformation": {text},
+            "request": "Please return the edited resume content in JSON format.",
+            }}"""
+
     json_response = send_to_claude_ai(client, prompt)
 
     if json_response is None:
@@ -46,7 +59,7 @@ def parse_resume(client: anthropic.Anthropic, pdf_path: str):
     except json.JSONDecodeError as e:
         print("JSON decoding error:", e)
         print("Problematic JSON string:", re.sub(r"^.*?{", "{", json_response).strip(" `"))
-        return None
+        return {}
 
 
 def load_resume(json_path: str):

@@ -108,8 +108,12 @@ def initial_prompt(client: anthropic.Anthropic, resume: dict) -> dict:
                 "Restructure descriptions for better flow and readability.",
                 "Use 2 or 3 bullet points for each topic.",
                 "Utilize Active Voice.",
-                "Use strong action verbs.",
+                "Use strong action verbs.",s
                 "Use quantifiable data.",
+                "Follow the strict JSOn structure in resume_content."
+                "Use only specified fields.",
+                "Leave Unknowns Blank.",
+                "Use the JSON structure provided.",
 
             ],
             "request": "Please return the edited resume content in JSON format.",
@@ -185,6 +189,9 @@ def sub_prompts(client: anthropic.Anthropic, resume: dict, key: str, user_input:
             "Utilize Active Voice.",
             "Use strong action verbs.",
             "Use quantifiable data.",
+            "Use only specified fields.",
+            "Leave Unknowns Blank.",
+            "Use the JSON structure provided.",
         ],
         "user_feedback": "{user_input}",
         "request": "Please return the edited resume content in JSON format.",
