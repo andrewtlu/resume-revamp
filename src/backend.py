@@ -6,9 +6,11 @@ import prompting as pr
 from resume_parser import parse_resume
 import os
 from dotenv import load_dotenv
+from flask_cors import CORS
 
 load_dotenv()
 app = Flask(__name__)
+CORS(app)
 app.config['MAX_CONTENT_LENGTH'] = 1 * 1024 * 1024 * 1024
 
 @app.route('/')

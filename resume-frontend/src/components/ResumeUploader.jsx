@@ -6,46 +6,41 @@ function ResumeUploader() {
   const [file, setFile] = useState(null);
   const [fileName, setFileName] = useState('');
   const [resumeText, setResumeText] = useState('');
-  const [promptText, setPromptText] = useState('');
   const navigate = useNavigate();
-const handleFileChange = (event) => {
-  const selectedFile = event.target.files[0];
-  if (selectedFile) {
-    setFile(selectedFile);
-    setFileName(selectedFile.name);
-  }
-};
 
-const handlePromptChange = (event) => {
-  setPromptText(event.target.value);
-};
-const handleSubmit = async (event) => {
-  event.preventDefault();
-  if (!file) {
-    alert('Please select a file first!');
-    return;
-  }
-
-  const formData = new FormData();
-  formData.append('resume', file);
-
-  try {
-    const response = await fetch('/upload', {
-      method: 'POST',
-      body: formData,
-    });
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+  const handleFileChange = (event) => {
+    const selectedFile = event.target.files[0];
+    if (selectedFile) {
+      setFile(selectedFile);
+      setFileName(selectedFile.name);
     }
-    const result = await response.json();
-    setResumeText(result.refinedResume);
-    // Navigate inside the try block where `result` is defined
-    navigate('/refined', { state: { resumeText: result.refinedResume } });
-  } catch (error) {
-    console.error('Error uploading file:', error);
-  }
-};
+  };
 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    if (!file) {
+      alert('Please select a file first!');
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append('resume_pdf', file);
+
+    try {
+      const response = await fetch('http://127.0.0.1:5000/parse_resume', {
+        method: 'POST',
+        body: formData,
+      });
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const result = await response.json();
+      setResumeText(result.refinedResume);
+      navigate('/refined', { state: { resumeText: result.refinedResume } });
+    } catch (error) {
+      console.error('Error uploading file:', error);
+    }
+  };
 
   return (
     <div className="resume-uploader">

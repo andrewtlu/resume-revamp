@@ -25,7 +25,7 @@ def parse_resume(client: anthropic.Anthropic, pdf_path: str):
     text = extract_text(pdf_path)
 
     template = None
-    with open("src/resume_template.json", "r") as f:
+    with open("./resume_template.json", "r") as f:
         template = json.load(f)
     prompt = "Use the strict following JSON structure " + json.dumps(template) + " (no unspecified fields, filling unknowns with 'none') to structure the following resume information into the JSON format: " + text
     json_response = send_to_claude_ai(client, prompt)
