@@ -173,8 +173,9 @@ def sub_prompts(client: anthropic.Anthropic, resume: dict, key: str, user_input:
         The improved resume.
     """
     # Load the JSON template for the specified section
+    path_for_andrew = f'/Users/andrewchung/Desktop/resume-revamper/src/sub_json_templates/{key}.json'
     try:
-        with open(f"./sub_json_templates/{key}.json", "r") as f:
+        with open(path_for_andrew, "r") as f:
             template = json.load(f)
     except FileNotFoundError:
         print(f"Error: Template file for {key} not found.")
@@ -183,20 +184,19 @@ def sub_prompts(client: anthropic.Anthropic, resume: dict, key: str, user_input:
     # Prepare the prompt for the client
 
     if key == "education" or key == "header":
-        prompt = f"""{{ "instructions": "incorporate user_feedback into the {key}'s section and provide an edited version with the following improvements:",
+        prompt = f"""{{ instructions": "Use JSON structure outlined in the {key} key. Incorporate user_feedback into the {key} section in resume_content and return the {key} values with the following improvements:",
             "improvements": [
                 "Rephrase descriptions for clarity and impact.",
                 "Restructure descriptions for better flow and readability.",
-                "Strictly use the provided JSON format f{template}.",
                 "Use only specified fields.",
                 "Leave Unknowns Blank.",
-                "Use the JSON structure provided.",
+                "Use the JSON_structure provided."
             ],
             "user_feedback": "{user_input}",
             "request": "Please return the edited resume content in JSON format.",
             "resume_content": "[
                 {json.dumps(resume)},
-            ]"
+            ]",
             }}"""
 
         messages = [{"role": "user", "content": prompt}]
@@ -210,25 +210,22 @@ def sub_prompts(client: anthropic.Anthropic, resume: dict, key: str, user_input:
             messages=messages
         )
     else:
-        prompt = f"""{{ "instructions": "incorporate user_feedback into the {key}'s section and provide an edited version with the following improvements:",
+        prompt = f""""{{instructions": "Use JSON structure outlined in the {key} key. Incorporate user_feedback into the {key} section in resume_content and return the {key} values with the following improvements:",
             "improvements": [
+                "DO NOT USER TEMPLATE IN OUTPUT",
                 "Rephrase descriptions for clarity and impact.",
                 "Restructure descriptions for better flow and readability.",
-                "Strictly use the provided JSON format f{template}.",
                 "Use 2 to 4 bullet points for each topic.",
                 "Utilize Active Voice.",
                 "Use strong action verbs.",
                 "Use quantifiable data.",
                 "Use only specified fields.",
-                "Leave Unknowns Blank.",
-                "Use the JSON structure provided.",
+                "Leave Unknowns Blank."
             ],
-            "user_feedback": "{user_input}",
+            "user_feedback": {user_input},  
             "request": "Please return the edited resume content in JSON format.",
-            "resume_content": "[
-                {json.dumps(resume)},
-            ]"
-            }}"""
+            "resume_content": {json.dumps(resume)} 
+        }}"""
 
         messages = [{"role": "user", "content": prompt}]
 
