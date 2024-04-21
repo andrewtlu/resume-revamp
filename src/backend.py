@@ -19,8 +19,8 @@ def home():
     return None
 
 
-@app.route('/sub_prompt', methods=['POST'])
-def handle_sub_prompt():
+@app.route('/regeneration', methods=['POST'])
+def handle_regeneration():
     data = request.get_json()
 
     client = anthropic.Anthropic()
