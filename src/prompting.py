@@ -83,8 +83,6 @@ def initial_prompt(client: anthropic.Anthropic, resume: dict) -> dict:
         The initialized Anthropic client.
     resume : dict
         The parsed resume data.
-    key: str
-        The section to we should edit in the resume.
 
     Returns:
     --------
@@ -99,7 +97,10 @@ def initial_prompt(client: anthropic.Anthropic, resume: dict) -> dict:
 
     messages = []
     
-    with open(f"./resume_template.json", "r") as f:
+    # dont delete this, it is easier fo rme to test isntead of deleting file path every time
+    path_for_andrew = '/Users/andrewchung/Desktop/resume-revamper/src/resume_template.json'
+    path = "./resume_template.json"
+    with open(path_for_andrew, "r") as f:
         template = json.load(f)
 
     prompt = f"""{{ "instructions": "please be critical while reviewing the resume and provide an edited version with the following improvements:",
@@ -180,36 +181,65 @@ def sub_prompts(client: anthropic.Anthropic, resume: dict, key: str, user_input:
         return {}
 
     # Prepare the prompt for the client
-    prompt = f"""{{ "instructions": "incorporate user_feedback into the {key}'s descriptions section and provide an edited version with the following improvements:",
-        "improvements": [
-            "Rephrase descriptions for clarity and impact.",
-            "Restructure descriptions for better flow and readability.",
-            "Strictly use the provided JSON format f{template}.",
-            "Use 2 to 4 bullet points for each topic.",
-            "Utilize Active Voice.",
-            "Use strong action verbs.",
-            "Use quantifiable data.",
-            "Use only specified fields.",
-            "Leave Unknowns Blank.",
-            "Use the JSON structure provided.",
-        ],
-        "user_feedback": "{user_input}",
-        "request": "Please return the edited resume content in JSON format.",
-        "resume_content": "[
-            {json.dumps(resume)},
-        ]"
-        }}"""
 
-    messages = [{"role": "user", "content": prompt}]
+    if key == "education" or key == "header":
+        prompt = f"""{{ "instructions": "incorporate user_feedback into the {key}'s section and provide an edited version with the following improvements:",
+            "improvements": [
+                "Rephrase descriptions for clarity and impact.",
+                "Restructure descriptions for better flow and readability.",
+                "Strictly use the provided JSON format f{template}.",
+                "Use only specified fields.",
+                "Leave Unknowns Blank.",
+                "Use the JSON structure provided.",
+            ],
+            "user_feedback": "{user_input}",
+            "request": "Please return the edited resume content in JSON format.",
+            "resume_content": "[
+                {json.dumps(resume)},
+            ]"
+            }}"""
 
-    # Send the prompt to the Anthropic client
-    response = client.messages.create(
-        model="claude-3-sonnet-20240229",
-        max_tokens=4096,
-        system="You are an expert resume consultant who edits resumes with user feedback.",
-        temperature=0.5,
-        messages=messages
-    )
+        messages = [{"role": "user", "content": prompt}]
+
+        # Send the prompt to the Anthropic client
+        response = client.messages.create(
+            model="claude-3-sonnet-20240229",
+            max_tokens=4096,
+            system="You are an expert resume consultant who edits resumes with user feedback.",
+            temperature=0.5,
+            messages=messages
+        )
+    else:
+        prompt = f"""{{ "instructions": "incorporate user_feedback into the {key}'s section and provide an edited version with the following improvements:",
+            "improvements": [
+                "Rephrase descriptions for clarity and impact.",
+                "Restructure descriptions for better flow and readability.",
+                "Strictly use the provided JSON format f{template}.",
+                "Use 2 to 4 bullet points for each topic.",
+                "Utilize Active Voice.",
+                "Use strong action verbs.",
+                "Use quantifiable data.",
+                "Use only specified fields.",
+                "Leave Unknowns Blank.",
+                "Use the JSON structure provided.",
+            ],
+            "user_feedback": "{user_input}",
+            "request": "Please return the edited resume content in JSON format.",
+            "resume_content": "[
+                {json.dumps(resume)},
+            ]"
+            }}"""
+
+        messages = [{"role": "user", "content": prompt}]
+
+        # Send the prompt to the Anthropic client
+        response = client.messages.create(
+            model="claude-3-sonnet-20240229",
+            max_tokens=4096,
+            system="You are an expert resume consultant who edits resumes with user feedback.",
+            temperature=0.5,
+            messages=messages
+        )
 
     # Assuming handling of response is needed
     # This should ideally parse the response and update the resume dictionary accordingly
