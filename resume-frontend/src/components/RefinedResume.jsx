@@ -5,6 +5,7 @@ import './RefinedResume.css';
 function RefinedResume() {
   const navigate = useNavigate();
   const location = useLocation();
+  const [isLoading, setIsLoading] = useState(false);
 
   const [resume, setResume] = useState(location.state?.resumeText || {});
   const [prompts, setPrompts] = useState(
@@ -14,6 +15,7 @@ function RefinedResume() {
 const handleRegenerate = async (section) => {
   const promptText = prompts[section];
   if (!promptText.trim()) return; // Prevent empty prompt requests
+  setIsLoading(true); // Start loading
 
   try {
     const response = await fetch('http://127.0.0.1:5000/regeneration', {
@@ -38,6 +40,7 @@ const handleRegenerate = async (section) => {
       ...prev,
       [section]: result.refined_resume[section] // Update only the edited section
     }));
+    setIsLoading(false); // Stop loading after response is handled
   } catch (error) {
     console.error('Failed to regenerate section:', error);
   }
@@ -117,16 +120,21 @@ const handleRegenerate = async (section) => {
       {Object.keys(resume).map((sectionKey) => {
         const sectionContent = resume[sectionKey];
         return (
-          <div key={sectionKey} className="resume-section">
-            <h3>{sectionKey.charAt(0).toUpperCase() + sectionKey.slice(1)}</h3>
-            {renderSectionContent(sectionContent)}
-            <textarea
-              value={prompts[sectionKey]}
-              onChange={(e) => handlePromptChange(sectionKey, e.target.value)}
-              placeholder={`Enter prompt to refine your ${sectionKey}`}
-            />
-            <button onClick={() => handleRegenerate(sectionKey)}>Regenerate section</button>
-          </div>
+            <div key={sectionKey} className="resume-section">
+              <h3>{sectionKey.charAt(0).toUpperCase() + sectionKey.slice(1)}</h3>
+              {renderSectionContent(sectionContent)}
+              <textarea
+                  value={prompts[sectionKey]}
+                  onChange={(e) => handlePromptChange(sectionKey, e.target.value)}
+                  placeholder={`Enter prompt to refine your ${sectionKey}`}
+              />
+              <button
+                  onClick={() => handleRegenerate(sectionKey)}
+                  disabled={isLoading}
+              >
+                {isLoading ? 'Loading...' : 'Regenerate section'}
+              </button>
+            </div>
         );
       })}
       <button onClick={() => navigate('/')}>Upload Another Resume</button>
