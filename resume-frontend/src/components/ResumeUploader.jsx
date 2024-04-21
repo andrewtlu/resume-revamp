@@ -35,6 +35,8 @@ function ResumeUploader() {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const result = await response.json();
+      console.log('Parsed Resume JSON:', result.refinedResume); // This will log the result to the browser's console
+
       setResumeText(result.refinedResume);
       navigate('/refined', { state: { resumeText: result.refinedResume } });
     } catch (error) {
@@ -59,12 +61,12 @@ function ResumeUploader() {
         </div>
         <button type="submit" className="button-primary">Refine Resume</button>
       </form>
-      {resumeText && (
-        <div className="resume-display">
-          <h2>Refined Resume</h2>
-          <p>{resumeText}</p>
-        </div>
-      )}
+      {/*{resumeText && (*/}
+      {/*  <div className="resume-display">*/}
+      {/*    <h2>Refined Resume</h2>*/}
+      {/*    <p>{resumeText}</p>*/}
+      {/*  </div>*/}
+      {/*)}*/}
     </div>
   );
 }

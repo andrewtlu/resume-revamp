@@ -1,11 +1,13 @@
 {
-    "header": {
-        "name": "John Doe",
-        "address": "1234 Elm St, Springfield, IL 62701",
-        "email": "john.doe@email.com",
-        "phone": "555-555-5555",
-        "website": "johndoe.com"
-    },
+    "header": [
+            {
+            "name": "John Doe",
+            "address": "1234 Elm St, Springfield, IL 62701",
+            "email": "john.doe@email.com",
+            "phone": "555-555-5555",
+            "website": "johndoe.com"
+        }
+    ],
     "education": [
         {
             "school": "University of Illinois",
