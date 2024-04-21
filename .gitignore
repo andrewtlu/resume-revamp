@@ -2,6 +2,9 @@
 ignore/
 .idea/
 
+# place where json stored
+/uploads
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
