@@ -19,32 +19,19 @@ def home():
     return None
 
 
-@app.route('/initial_prompt', methods=['POST'])
-def handle_initial_prompt():
-    data = request.get_json()
-
-    client = anthropic.Anthropic() 
-
-    resume = data.get('resume', {})
-    key = data.get('key', '')
-    response = pr.initial_prompt(client, resume, key)
-
-    return jsonify({'result': response})
-
-
 @app.route('/sub_prompt', methods=['POST'])
 def handle_sub_prompt():
     data = request.get_json()
 
-    client = anthropic.Anthropic() 
-
-
+    client = anthropic.Anthropic()
 
     resume = data.get('resume', {})
     key = data.get('key', '')
-    response = pr.sub_prompts(client, resume, key)
+    response = pr.sub_prompts(client, resume, key, data) 
 
-    return jsonify({'result': response})
+    response_body = json.dumps({'refined_resume': response, 'message': "Resume edited successfully"}, indent=2)
+    return Response(response_body, mimetype='application/json', status=200)
+
 
 
 @app.route('/parse_resume', methods=['POST'])
@@ -74,7 +61,7 @@ def parse_resume_endpoint():
 
         print(parsed_resume)
 
-        return Response(json.dumps({'message': 'Resume parsed successfully', 'refinedResume': parsed_resume}, indent=2), mimetype='application/json', status=200), 200
+        return Response(json.dumps({'message': 'Resume parsed successfully', 'refinedResume': parsed_resume}, indent=2), mimetype='application/json', status=200)
     else:
         #TODO: new prompt for user to add the missing information
         # new prompt for user to add the missing information
