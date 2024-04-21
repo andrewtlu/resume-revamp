@@ -62,6 +62,8 @@ def parse_resume_endpoint():
 
     parsed_resume = parse_resume(client, pdf_path)
 
+    parsed_resume = pr.initial_prompt(client, parsed_resume)
+
     if parsed_resume is not None:
         json_path = os.path.join(uploads_dir, 'resume_parsed.json')
         
@@ -70,7 +72,7 @@ def parse_resume_endpoint():
         
         os.remove(pdf_path)
 
-        return jsonify({'message': 'Resume parsed successfully'}), 200
+        return jsonify({'message': 'Resume parsed successfully', 'refinedResume': parsed_resume}), 200
     else:
         #TODO: new prompt for user to add the missing information
         # new prompt for user to add the missing information

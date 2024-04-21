@@ -5,6 +5,7 @@ import resume_compiler as rc
 import resume_parser as rp
 from dotenv import load_dotenv
 import resume_compiler as rc
+import re
 
 load_dotenv()
 claude = anthropic.Anthropic()
@@ -72,7 +73,7 @@ def parse_resume(client: anthropic.Anthropic) -> tuple[dict, bool]:
 
 
 # Have API pass the section that we are working on through the API, do not move the next section until user is satisfied with the current section.
-def initial_prompt(client: anthropic.Anthropic, resume: dict, key: str) -> dict:
+def initial_prompt(client: anthropic.Anthropic, resume: dict) -> dict:
     """
     Initital prompting from Claude AI. 
 
@@ -98,15 +99,14 @@ def initial_prompt(client: anthropic.Anthropic, resume: dict, key: str) -> dict:
 
     messages = []
     
-    with open(f"/Users/andrewchung/Desktop/resume-revamper/src/sub_json_templates/{key}.json", "r") as f:
+    with open(f"/Users/andrewchung/Desktop/resume-revamper/src/resume_template.json", "r") as f:
         template = json.load(f)
 
-    prompt = f"""{{ "instructions": "please be critical and review the {key} section and provide an edited version with the following improvements:",
+    prompt = f"""{{ "instructions": "please be critical while reviewing the resume and provide an edited version with the following improvements:",
             "improvements": [
                 "Rephrase descriptions for clarity and impact.",
                 "Restructure descriptions for better flow and readability.",
-                "Strictly use the provided JSON format f{template}.",
-                "Use 3 or 4 bullet points for each topic.",
+                "Use 2 or 3 bullet points for each topic.",
                 "Utilize Active Voice.",
                 "Use strong action verbs.",
                 "Use quantifiable data.",
@@ -114,7 +114,7 @@ def initial_prompt(client: anthropic.Anthropic, resume: dict, key: str) -> dict:
             ],
             "request": "Please return the edited resume content in JSON format.",
             "resume_content": "[
-                {json.dumps(resume[key])},
+                {json.dumps(resume)},
             ]"
             }}"""
 
@@ -133,11 +133,21 @@ def initial_prompt(client: anthropic.Anthropic, resume: dict, key: str) -> dict:
     # prompt for suggestions to fix weaknesses, display to user
     # select chosen improvements and save, continue to next cycle
 
-    print(response.content[0].text)
+    if isinstance(response.content, list):
+        concatenated_text = "".join([cb.text for cb in response.content if hasattr(cb, "text")])
 
-    return response.content[0].text
+    try:
+        resume_data = json.loads(re.sub(r"^[^{]*", "", concatenated_text).strip(" `"))
 
-import json
+        #do not need this since we are using flask
+        # with open("resume_parsed.json", "w") as f:
+        #     json.dump(resume_data, f, indent=4)
+        return resume_data
+    except json.JSONDecodeError as e:
+        print("JSON decoding error:", e)
+        print("Problematic JSON string:", re.sub(r"^.*?{", "{", concatenated_text).strip(" `"))
+        return None
+
 
 def sub_prompts(client: anthropic.Anthropic, resume: dict, key: str, user_input: str) -> dict:
     """
@@ -171,7 +181,7 @@ def sub_prompts(client: anthropic.Anthropic, resume: dict, key: str, user_input:
             "Rephrase descriptions for clarity and impact.",
             "Restructure descriptions for better flow and readability.",
             "Strictly use the provided JSON format f{template}.",
-            "Use 3 or 4 bullet points for each topic.",
+            "Use 2 to 4 bullet points for each topic.",
             "Utilize Active Voice.",
             "Use strong action verbs.",
             "Use quantifiable data.",
@@ -179,7 +189,7 @@ def sub_prompts(client: anthropic.Anthropic, resume: dict, key: str, user_input:
         "user_feedback": "{user_input}",
         "request": "Please return the edited resume content in JSON format.",
         "resume_content": "[
-            {json.dumps(resume[key])},
+            {json.dumps(resume)},
         ]"
         }}"""
 
@@ -196,12 +206,20 @@ def sub_prompts(client: anthropic.Anthropic, resume: dict, key: str, user_input:
 
     # Assuming handling of response is needed
     # This should ideally parse the response and update the resume dictionary accordingly
-    # For now, we simply print the response for demonstration
-    print(response.content[0].text)
-    return {}
+    if isinstance(response.content, list):
+        concatenated_text = "".join([cb.text for cb in response.content if hasattr(cb, "text")])
 
-# The function assumes you have an initialized client and a dictionary `resume` ready to be passed along with a specific key.
-# sub_prompts(client, resume, 'education')
+    try:
+        resume_data = json.loads(re.sub(r"^[^{]*", "", concatenated_text).strip(" `"))
+
+        #do not need this since we are using flask
+        # with open("resume_parsed.json", "w") as f:
+        #     json.dump(resume_data, f, indent=4)
+        return resume_data
+    except json.JSONDecodeError as e:
+        print("JSON decoding error:", e)
+        print("Problematic JSON string:", re.sub(r"^.*?{", "{", concatenated_text).strip(" `"))
+        return None
 
 
 
@@ -250,5 +268,5 @@ if __name__ == "__main__":
 
     print("Awesome! Let's get started on improving your resume!\n")
     # print(resume)
-    initial_prompt(claude, resume, "projects")
+    initial_prompt(claude, resume)
     # sub_prompts(claude, resume, "projects", "I like my descriptions for RIDEmory so don't change that. regenerate the description for my personal website.")
