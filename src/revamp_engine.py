@@ -178,8 +178,8 @@ def improve_resume(client: anthropic.Anthropic, resume: dict) -> dict:
     # select chosen improvements and save, continue to next cycle
 
     print(response.content[0].text)
-
-    convert_json_to_tex(response)
+    resume_dict = json.loads(response.content[0].text)
+    convert_json_to_tex(resume_dict['resume_content'][0])
 
     pass
 
@@ -193,10 +193,10 @@ def convert_json_to_tex(resume: dict):
     resume : dict
         The improved resume data.
     """
-    with open("/Users/andrewchung/Desktop/resume-revamper/src/save_message.json", "w") as f:
+    with open("src/save_message.json", "w") as f:
         json.dump(resume, f, indent=4)
 
-    jt.json_to_tex('/resume-revamper/dat/resume_template/bba_resume_template.tex',"/src/save_message.json", "/src/compiled.tex")
+    jt.generate_resume_latex('dat/resume_template/bba_resume_template.tex',"src/save_message.json", "src/compiled.tex")
 
     pass
 
@@ -210,7 +210,7 @@ def compile_resume(filepath: str):
         The improved resume data.
     """
 
-    rc.compile_latex(input(filepath))
+    #TODO add the compile function here
 
     pass
 
