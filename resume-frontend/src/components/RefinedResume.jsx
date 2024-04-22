@@ -12,67 +12,68 @@ function RefinedResume() {
   const [prompts, setPrompts] = useState(
     Object.keys(resume).reduce((acc, key) => {
       if (Array.isArray(resume[key])) {
-        // For arrays, we create an array of prompts
         return { ...acc, [key]: resume[key].map(() => '') };
       } else {
-        // For strings and objects, we use a single string prompt
         return { ...acc, [key]: '' };
       }
     }, {})
   );
 
-  const handleRegenerate = async (section, index = null) => {
-    const promptText = typeof index === 'number' ? prompts[section][index] : prompts[section];
-    if (!promptText.trim()) return; // Prevent empty prompt requests
-    setIsLoading(true); // Start loading
+const handleRegenerate = async (section, index = null) => {
+  const promptText = typeof index === 'number' ? prompts[section][index] : prompts[section];
+  if (!promptText.trim()) return;
+  setIsLoading(true);
 
-    try {
-      const requestBody = {
-        resume: resume,
-        key: section,
-        suggestion: promptText
-      };
+  const contentToRegenerate = typeof index === 'number' ? resume[section][index] : resume[section];
+  console.log(contentToRegenerate)
+  try {
+    const requestBody = {
+      sectionContent: contentToRegenerate,
+      key: section,
+      suggestion: promptText
+    };
 
-      if (typeof index === 'number') {
-        requestBody.index = index; // Include the index for array items
-      }
-
-      const response = await fetch('http://127.0.0.1:5000/regeneration', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(requestBody)
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-
-      const result = await response.json();
-      setResume((prev) => {
-        if (typeof index === 'number') {
-          // Update only the edited item within the array section
-          const updatedSection = [...prev[section]];
-          updatedSection[index] = result.refined_resume[section][index];
-          return {
-            ...prev,
-            [section]: updatedSection
-          };
-        } else {
-          // Update the entire section for string and object types
-          return {
-            ...prev,
-            [section]: result.refined_resume[section]
-          };
-        }
-      });
-
-      setIsLoading(false); // Stop loading after response is handled
-    } catch (error) {
-      console.error('Failed to regenerate section:', error);
+    if (typeof index === 'number') {
+      requestBody.index = index;
     }
-  };
+
+    const response = await fetch('http://127.0.0.1:5000/regeneration', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(requestBody)
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const result = await response.json();
+    setResume((prev) => {
+      if (typeof index === 'number') {
+        // Update only the edited item within the array section
+        const updatedSection = [...prev[section]];
+        updatedSection[index] = result.refined_resume; // Updated content received from backend
+        return {
+          ...prev,
+          [section]: updatedSection
+        };
+      } else {
+        // Update the entire section for non-array types
+        return {
+          ...prev,
+          [section]: result.refined_resume // Updated content received from backend
+        };
+      }
+    });
+
+    setIsLoading(false); // Stop loading after response is handled
+  } catch (error) {
+    console.error('Failed to regenerate section:', error);
+  }
+};
+
 
   const handlePromptChange = (section, value, index = null) => {
     setPrompts((prev) => {
