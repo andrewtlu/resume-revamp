@@ -85,11 +85,11 @@ def generate_resume_latex(template_file, json_file, output_file):
         location_str = experience['location'] if 'location' in experience else ''
         start_str = experience['start'] if 'start' in experience else ''
         end_str = experience['end'] if 'end' in experience else ''
-        description_str = {' '.join([f"\\item {responsibility}" for responsibility in experience['description']])} if 'description' in experience else {''}
+        description_str = ' '.join([f"\\item {responsibility}" for responsibility in experience['description']]) if 'description' in experience else ''
         work_experience_section += f"""
 \\noindent
-\\textbf{company_str} \\hfill {location_str}\\\\
-\\emph{position_str} \\hfill {start_str} -- {end_str}
+\\textbf{{{company_str}}} \\hfill {{{location_str}}}\\\\
+\\emph{{{position_str}}} \\hfill {{{start_str}}} -- {{{end_str}}}
 \\begin{{itemize}}
     {description_str}
 \\end{{itemize}}
@@ -103,21 +103,21 @@ def generate_resume_latex(template_file, json_file, output_file):
     pattern = r"\\section\*{\\large\\textbf{WORK EXPERIENCE}.*(?=\\section\*{\\large\\textbf{PROJECTS})"
     replacement = re.search(pattern, template, flags=re.DOTALL).group(0)
     template = template.replace(replacement, f'\\section*{{\\large\\textbf{{WORK EXPERIENCE}}}} \n \\vspace{{-\\baselineskip}} \n\\noindent\\rule{{\\textwidth}}{{0.4pt}} \n\n{work_experience_section}')
-    print('work experience section successfully replaced')
+    # print('work experience section successfully replaced')
 
     # projects section
     projects_section = ''
     for project in resume_data['projects']:
         name_str = project['name'] if 'name' in project else ''
-        description_str = {' '.join([f"\\item {description}" for description in project['description']])} if 'description' in project else {''}
+        description_str = ' '.join([f"\\item {description}" for description in project['description']]) if 'description' in project else ''
         technologies_str = ', '.join(project['technologies']) if 'technologies' in project else ''
         projects_section += f"""
 \\noindent
-\\textbf{name_str}
+\\textbf{{{name_str}}}
 \\begin{{itemize}}
     {description_str}
 \\end{{itemize}}
-\\emph{{Technologies:}} {technologies_str}
+\\emph{{Technologies:}} {{{technologies_str}}}
 """
     projects_section += f"\n \\vspace{{-\\baselineskip}}"
     projects_section=projects_section.replace(r'&', r'\&')
@@ -128,7 +128,7 @@ def generate_resume_latex(template_file, json_file, output_file):
     pattern = r"\\section\*{\\large\\textbf{PROJECTS}.*(?=\\section\*{\\large\\textbf{EXTRACURRICULARS})"
     replacement = re.search(pattern, template, flags=re.DOTALL).group(0)
     template = template.replace(replacement, f'\\section*{{\\large\\textbf{{PROJECTS}}}}\n\\vspace{{-\\baselineskip}}\n\\noindent\\rule{{\\textwidth}}{{0.4pt}}\n\n{projects_section}\n')
-    print('projects section successfully replaced')
+    # print('projects section successfully replaced')
 
     # Extracurriculars section
     extracurriculars_section = ''
@@ -138,11 +138,11 @@ def generate_resume_latex(template_file, json_file, output_file):
         location_str = extracurricular['location'] if 'location' in extracurricular else ''
         start_str = extracurricular['start'] if 'start' in extracurricular else ''
         end_str = extracurricular['end'] if 'end' in extracurricular else ''
-        description_str = {' '.join([f"\\item {description}" for description in extracurricular['description']])} if 'description' in extracurricular else {''}
+        description_str = ' '.join([f"\\item {description}" for description in extracurricular['description']]) if 'description' in extracurricular else ''
         extracurriculars_section += f"""
 \\noindent
-\\textbf{organization_str} \\hfill {location_str} \\\\
-\\emph{position_str} \\hfill {start_str} -- {end_str}
+\\textbf{{{organization_str}}} \\hfill {{{location_str}}} \\\\
+\\emph{{{position_str}}} \\hfill {{{start_str}}} -- {{{end_str}}}
 \\begin{{itemize}}
     {description_str}
 \\end{{itemize}}
@@ -156,14 +156,14 @@ def generate_resume_latex(template_file, json_file, output_file):
     pattern = r"\\section\*{\\large\\textbf{EXTRACURRICULARS}.*(?=\\section\*{\\large\\textbf{ADDITIONAL INFORMATION})"
     replacement = re.search(pattern, template, flags=re.DOTALL).group(0)
     template = template.replace(replacement, f'\\section*{{\\large\\textbf{{EXTRACURRICULARS}}}}\n\\vspace{{-\\baselineskip}}\n\\noindent\\rule{{\\textwidth}}{{0.4pt}}\n\n{extracurriculars_section}\n')
-    print('extracurriculars section successfully replaced')
+    # print('extracurriculars section successfully replaced')
 
     # Additional Information section
     additional_info_section = ''
     for activity in resume_data['other']:
         title_str = activity['title'] if 'title' in activity else ''
         content_str = ', '.join(activity['content']) if 'content' in activity else ''
-        additional_info_section += f"\\noindent\n\\textbf{title_str}: " + content_str + "\\\\ \n"
+        additional_info_section += f"\\noindent\n\\textbf{{{title_str}}}: " + content_str + "\\\\ \n"
 
     additional_info_section=additional_info_section.replace(r'&', r'\&')
     additional_info_section=additional_info_section.replace(r'%', r'\%')
@@ -173,7 +173,6 @@ def generate_resume_latex(template_file, json_file, output_file):
     pattern = r"\\section\*{\\large\\textbf{ADDITIONAL INFORMATION}.*(?=\\end{document})"
     replacement = re.search(pattern, template, flags=re.DOTALL).group(0)
     template = template.replace(replacement, f'\\section*{{\\large\\textbf{{ADDITIONAL INFORMATION}}}}\n\\vspace{{-\\baselineskip}}\n\\noindent\\rule{{\\textwidth}}{{0.4pt}}\n\n{additional_info_section}\n')
-    template = template.replace(r'#', r'\#')
 
 #
 #     # Additional Information section
