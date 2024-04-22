@@ -1,3 +1,5 @@
+import os.path
+
 import anthropic
 # import aux
 import json
@@ -6,6 +8,7 @@ import resume_parser as rp
 from dotenv import load_dotenv
 import json_to_tex as jt
 import pdflatex
+import subprocess
 
 
 # # example message from claude 3
@@ -211,13 +214,22 @@ def compile_resume(filepath: str):
         The improved resume data.
     """
 
-    # TODO add the compile function here
-    with open(filepath, 'rb') as f:
-        pdfl = pdflatex.PDFLaTeX.from_binarystring(f.read(), 'my_file')
-    pdf, log, cp = pdfl.create_pdf()
+    command = ['lualatex', '-output-directory=' + 'dat/output', filepath]
+    result = subprocess.run(command, text = True, capture_output=True)
+    if result.returncode == 0:
+        print("Compilation successful: {filepath} has been compiled to PDF.")
+        print(result.stdout)
+        clean_up('dat/output', filepath)
     pass
 
+def clean_up(directory, tex_file):
+    pdf_file = os.path.splitext(tex_file)[0] + '.pdf'
 
+    for file in os.listdir(directory):
+        file_path = os.path.join(directory, file)
+        if os.path.isfile(file_path) and file != os.path.basename(pdf_file):
+            os.remove(file_path)
+            print(f"Removed {file}")
 
 if __name__ == "__main__":
     print("Initializing Anthropic client...")

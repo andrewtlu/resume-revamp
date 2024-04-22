@@ -10,12 +10,12 @@
         {
             "school": "Emory University",
             "degree": "Bachelor of Science in Computer Science, Minor in Applied Math",
-            "graduation": "August 2022 \u2013 Present",
+            "graduation": "August 2022 -- Present",
             "gpa": "4.0/4.0",
             "details": [
-                "Consistently achieved Dean's List recognition for academic excellence (Fall 2022, Spring 2023, Fall 2023)",
-                "Completed rigorous coursework in Data Structures, Algorithms, Computer Architecture, Linear Algebra, Machine Learning, Computational Linguistics, Data Mining, and a Practicum",
-                "Honored with membership in Phi Eta Sigma Honor Society and National Merit Scholar distinction"
+                "Dean's List: Fall 2022, Spring 2023, Fall 2023",
+                "Relevant Coursework: Data Structures and Algorithms, Computer Architecture, Algorithms, Linear Algebra, Machine Learning, Computational Linguistics, Data Mining, Practicum",
+                "Awards/Distinctions: Phi Eta Sigma Honor Society, National Merit Scholar"
             ]
         }
     ],
@@ -27,8 +27,8 @@
             "start": "August 2023",
             "end": "Present",
             "description": [
-                "Ensure a seamless and tech-friendly environment for students and faculty by expertly managing the CCCH's audio-visual system",
-                "Maintain a secure and up-to-date online experience for over 200 students by overseeing the efficient operation of 32 computers and 4 printers"
+                "Maintained a friendly environment by managing CCCH's A/V system, ensuring a seamless experience for students and faculty.",
+                "Provided a secure and up-to-date online experience for over 200 students by servicing CCCH's 32 computers and 4 printers, ensuring reliable access to technology resources."
             ]
         },
         {
@@ -38,9 +38,9 @@
             "start": "June 2023",
             "end": "July 2023",
             "description": [
-                "Significantly enhanced user experience for 5 million+ BibleBot users across 60,000+ Discord servers by implementing a custom configurable time-to-live HTTP cache, reducing service response latency by 60% (~400 ms)",
-                "Optimized resource utilization by creating custom middleware to strip stored responses, decreasing HTML and JSON cache usage by 99% and 39%, respectively",
-                "Rapidly adapted to C# and the ASP.NET framework by leveraging proficiency in Java, MVC, REST, and Git"
+                "Improved service responsiveness by implementing a custom configurable time-to-live HTTP cache, reducing response latency by 60% (~400 ms) for over 5 million BibleBot users across 60,000+ Discord servers.",
+                "Optimized cache usage by creating custom middleware, decreasing HTML and JSON cache usage by 99% and 39%, respectively, for improved performance.",
+                "Leveraged knowledge in Java, MVC, REST, and Git to quickly adapt and contribute to the C# and ASP.NET framework."
             ]
         }
     ],
@@ -48,7 +48,7 @@
         {
             "name": "Personal Website",
             "description": [
-                "Designed and developed a personal portfolio website to showcase skills and gain hands-on experience with front-end technologies and design best practices, supporting Project Emory and RIDEmory's front-end/design teams"
+                "Researched, designed, and developed a personal portfolio website to showcase skills and learn front-end technology and design best practices, supporting Project Emory and RIDEmory's front-end/design team."
             ],
             "technologies": [
                 "React + Vite",
@@ -62,9 +62,9 @@
         {
             "name": "RIDEmory",
             "description": [
-                "Spearheaded the development of a comprehensive rideshare solution for Emory students, featuring a self-updating database of ride information",
-                "Guided engineers in leveraging MongoDB's GeoJSON indexing to efficiently filter nearby rides and incorporate real-time traffic data",
-                "Taught Java, Spring Boot, MVC/REST principles, and collaboration best practices to the project's back-end team"
+                "Built a comprehensive rideshare solution for Emory's students, featuring a self-updating database of ride information.",
+                "Guided engineers through MongoDB GeoJSON indexing to filter search for nearby rides and current traffic times, enabling efficient ride matching.",
+                "Utilized Java and Spring Boot to teach MVC/REST principles and promote collaboration within the project's back-end team."
             ],
             "technologies": [
                 "Java/Spring Boot",
@@ -79,8 +79,8 @@
         {
             "name": "Voice Calculator",
             "description": [
-                "Developed a hands-free calculator as a proof-of-concept for a lightweight, deployable, voice-controlled application",
-                "Crafted modular grammar regular expressions to improve speech detection accuracy, even in noisy environments"
+                "Developed a hands-free calculator as a proof-of-concept for a lightweight, deployable voice-controlled application.",
+                "Created modular grammar regular expressions to improve speech detection accuracy in noisy environments, ensuring reliable voice recognition."
             ],
             "technologies": [
                 "Java",
@@ -97,9 +97,9 @@
             "start": "May 2023",
             "end": "Present",
             "description": [
-                "Developed engaging Spring Boot, MongoDB, and Git curriculum to enhance the technical proficiency of over 20 members",
-                "Established and led Emory's only open project-building club, providing real-world coding experience to over 30 students",
-                "Mentored 2 Computer Science students through peer-programming, coursework guidance, and pre-professional support, contributing to their overall success in software engineering"
+                "Crafted engaging Spring Boot, MongoDB, and Git curriculum to enhance the technical proficiency of over 20 members.",
+                "Provided working CS experience to over 30 students by establishing and running Emory's only open project-building club.",
+                "Mentored 2 CS students through peer-programming opportunities, coursework guidance, and pre-professional advice, contributing to their overall success in software engineering."
             ]
         },
         {
@@ -109,8 +109,8 @@
             "start": "December 2023",
             "end": "Present",
             "description": [
-                "Designed and developed an internal operations webpage, including an announcements board, HR service page, personal dashboard, and resources page, to provide Odyssey Family Consulting Center with a unified employee experience",
-                "Leveraged Figma for client-driven design and JavaScript for implementation of web pages"
+                "Designed and developed an internal operations webpage for Odyssey Family Consulting Center, including an announcements board, HR service page, personal dashboard, and resources page, providing a unified employee experience.",
+                "Leveraged Figma for designing pages based on client specifications and JavaScript for implementing the designed pages."
             ]
         }
     ],
