@@ -185,12 +185,14 @@ def sub_prompts(client: anthropic.Anthropic, resume: dict, key: str, user_input:
         return {}
 
     # Initial prompt chain 1 : check for all positional argument queries given by user.
-    if  key == 'projects' or key == 'experience' or  key == "other":
-        prompt_initial = f"""{{ instructions": "Strictly use JSON structure outlined in the {key} key and do not add more keys. Follow the user_input for text editing operations in the {key} section.t":",
+    if  key == 'projects' or key == 'experience':
+        prompt_initial = f"""{{ instructions": "Use JSON structure outlined in the {key} key and do not add more keys. Follow the user_input for text editing comands in the {key} section.
+                        Bullet points, items, and things mean items in the list for descriptions",
+                        "user_input": "{user_input}",
                         "{key}": {json.dumps(resume)},     
                         }}"""
     else:
-        prompt_initial = f"""{{ instructions": "Strictly use JSON structure outlined in the {key} key and do not add more keys. Follow the user_input for text editing operations in the {key} section.t":",
+        prompt_initial = f"""{{ instructions": "Use JSON structure outlined in the {key} key and do not add more keys. Follow the user_input for text editing operations in the {key} section.",
                         "user_input": "{user_input}",
                         "{key}": {json.dumps(resume)},     
                         }}"""
@@ -218,6 +220,7 @@ def sub_prompts(client: anthropic.Anthropic, resume: dict, key: str, user_input:
             "user_feedback": {user_input},  
             "improvements": [   
                 "Please keep the number of values given for each section.",
+                "Only change what is specified.",
                 "Change descriptions for better flow and readability if requested.",
                 "Leave Unknowns Blank.",
                 "Utilize Active Voice.",
