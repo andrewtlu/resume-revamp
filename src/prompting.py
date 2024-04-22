@@ -212,10 +212,9 @@ def sub_prompts(client: anthropic.Anthropic, resume: dict, key: str, user_input:
     else:
         prompt = f""""{{instructions": "Use JSON structure outlined in the {key} key. Incorporate user_feedback into the {key} section in resume_content and return the {key} values with the following improvements:",
             "improvements": [
-                "DO NOT USER TEMPLATE IN OUTPUT",
+                "Follow user_feedback for the {key} section.",
                 "Rephrase descriptions for clarity and impact.",
                 "Restructure descriptions for better flow and readability.",
-                "Use 2 to 4 bullet points for each topic.",
                 "Utilize Active Voice.",
                 "Use strong action verbs.",
                 "Use quantifiable data.",
