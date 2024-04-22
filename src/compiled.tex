@@ -1,1 +1,113 @@
-"{\n  \"resume_content\": [\n    {\n      \"header\": {\n        \"name\": \"John Doe\",\n        \"address\": \"1234 Elm St, Springfield, IL 62701\",\n        \"email\": \"john.doe@email.com\",\n        \"phone\": \"(555) 555-5555\",\n        \"website\": \"johndoe.github.io\"\n      },\n      \"education\": [\n        {\n          \"school\": \"Emory University\",\n          \"degree\": \"Bachelor of Science in Computer Science, Minor in Applied Math\",\n          \"start\": \"August 2022\",\n          \"end\": \"Present\",\n          \"gpa\": \"3.8/4.0\",\n          \"details\": [\n            \"Dean's List: Spring 2023, Fall 2023\",\n            \"Relevant Coursework: Data Structures and Algorithms, Computer Architecture, Algorithms, Linear Algebra, Machine Learning, Computational Linguistics\",\n            \"Awards/Distinctions: Phi Eta Sigma Honor Society, National Merit Scholar\"\n          ]\n        }\n      ],\n      \"experience\": [\n        {\n          \"company\": \"Emory Libraries, Computing Center at Cox Hall\",\n          \"position\": \"Computing Center Technology Consultant\",\n          \"location\": \"Atlanta, GA\",\n          \"start\": \"August 2023\",\n          \"end\": \"Present\",\n          \"description\": [\n            \"Maintained a friendly environment by efficiently managing the A/V system, ensuring a smooth experience for students and faculty.\",\n            \"Provided a secure and up-to-date online experience for over 200 students by servicing 32 computers and 4 printers, ensuring optimal functionality.\"\n          ]\n        },\n        {\n          \"company\": \"Kerygma Digital\",\n          \"position\": \"Software Engineer\",\n          \"location\": \"Remote\",\n          \"start\": \"June 2023\",\n          \"end\": \"July 2023\",\n          \"description\": [\n            \"Optimized service response latency by 60% (~400 ms) through implementing a custom configurable time-to-live HTTP cache, creating a more responsive experience for over 5 million users across 60,000+ Discord servers.\",\n            \"Reduced HTML and JSON cache usage by 99% and 39% respectively by creating custom middleware to strip stored responses, improving overall system performance.\",\n            \"Leveraged knowledge in Java, MVC, REST, and Git to quickly adapt and work proficiently with C# and the ASP.NET framework.\"\n          ]\n        }\n      ],\n      \"projects\": [\n        {\n          \"name\": \"Personal Website\",\n          \"description\": [\n            \"Researched, designed, and developed a personal portfolio website to showcase skills and learn front-end technologies and design best practices, supporting Project Emory and RIDEmory's front-end/design teams.\"\n          ],\n          \"technologies\": [\n            \"React + Vite\",\n            \"TypeScript\",\n            \"HTML/CSS\",\n            \"Figma\",\n            \"Git\",\n            \"Firefox/Chrome Developer Tools\"\n          ]\n        },\n        {\n          \"name\": \"RIDEmory\",\n          \"description\": [\n            \"Built a comprehensive rideshare solution for Emory's students through a self-updating database of ride information.\",\n            \"Guided engineers in implementing MongoDB GeoJSON indexing to filter nearby rides and current traffic times, enhancing the user experience.\",\n            \"Utilized Java and Spring Boot to teach MVC/REST principles and promote collaboration within the project's back-end team.\"\n          ],\n          \"technologies\": [\n            \"Java/Spring Boot\",\n            \"MongoDB Atlas\",\n            \"Python/Flask\",\n            \"React\",\n            \"Figma\",\n            \"Git\",\n            \"Google Maps/Routes API\"\n          ]\n        }\n      ],\n      \"extracurriculars\": [\n        {\n          \"organization\": \"Project Emory\",\n          \"position\": \"Educational Director\",\n          \"location\": \"Atlanta, GA\",\n          \"start\": \"May 2023\",\n          \"end\": \"Present\",\n          \"description\": [\n            \"Crafted engaging Spring Boot, MongoDB, and Git curriculum to enhance the technical proficiency of over 20 members.\",\n            \"Provided practical CS experience to over 30 students by establishing and running Emory's only open project-building club.\"\n          ]\n        },\n        {\n          \"organization\": \"Emory Hack4Impact\",\n          \"position\": \"Software Engineer\",\n          \"location\": \"Atlanta, GA\",\n          \"start\": \"December 2023\",\n          \"end\": \"Present\",\n          \"description\": [\n            \"Designed and developed an internal operations webpage, including an announcements board, HR service page, personal dashboard, and resources page, to provide Odyssey Family Consulting Center with a unified employee experience.\",\n            \"Leveraged Figma to design pages based on client specifications and JavaScript to implement the designed pages.\"\n          ]\n        }\n      ],\n      \"other\": [\n        {\n          \"title\": \"Software\",\n          \"content\": [\n            \"(proficient): Java, Git, JavaScript/TypeScript, HTML/CSS, Python\",\n            \"(familiar): Shell, C, C#, Go\"\n          ]\n        },\n        {\n          \"title\": \"Interests\",\n          \"content\": [\n            \"Backpacking\",\n            \"Volleyball\",\n            \"Technical/Modded Minecraft\",\n            \"Linux\",\n            \"Performance Arts (Oboe and Guitar)\"\n          ]\n        }\n      ]\n    }\n  ],\n  \"more_information\": [\n    \"Kerygma Digital\"\n  ]\n}"
+\documentclass[10.5pt]{article}
+\usepackage[margin=.5in]{geometry}
+\usepackage{hyperref}
+\usepackage{fontawesome}
+\usepackage{fontspec}
+\usepackage{xcolor}
+\usepackage{setspace}
+\usepackage{enumitem}
+\singlespacing
+\setlist{noitemsep}
+\setlist{nosep}
+
+%LuaLaTex compiler
+
+\begin{document}
+
+\noindent
+\begin{center}
+{\Large \textbf{\fontsize{14pt}{14pt}\selectfont Andrew Lu}} \\
+andrew.lu@emory.edu \faEnvelope~$\cdot$~(404) 786-6427 \faPhone~$\cdot$~
+\href{https://andrewtlu.github.io}{Website  \faInfo}
+\end{center}
+
+\section*{\large\textbf{EDUCATION}}
+\vspace{-\baselineskip}
+\noindent\rule{\textwidth}{0.4pt}
+
+\noindent
+\textbf{Emory University} \\
+\emph{Bachelor of Science in Computer Science, Minor in Applied Math} \hfill August 2022 – Present \\ 
+Cumulative GPA: 4.0/4.0 
+\begin{itemize}
+\item Dean's List: Fall 2022, Spring 2023, Fall 2023
+\item Relevant Coursework: Data Structures and Algorithms, Computer Architecture, Algorithms, Linear Algebra, Machine Learning, Computational Linguistics, Data Mining, Practicum
+\item Awards/Distinctions: Phi Eta Sigma Honor Society, National Merit Scholar
+\end{itemize}
+ \vspace{-\baselineskip}
+\section*{\large\textbf{WORK EXPERIENCE}} 
+ \vspace{-\baselineskip} 
+\noindent\rule{\textwidth}{0.4pt} 
+
+
+\noindent
+\textbfEmory Libraries, Computing Center at Cox Hall \hfill Atlanta, GA\\
+\emphComputing Center Technology Consultant \hfill August 2023 -- Present
+\begin{itemize}
+    {"\\item Maintained a friendly, technical difficulty-free environment for students and faculty by managing CCCH's A/V system \\item Provided a secure, up-to-date online experience for over 200 students by servicing CCCH's 32 computers and 4 printers"}
+\end{itemize}
+
+\noindent
+\textbfKerygma Digital \hfill Remote\\
+\emphSoftware Engineer \hfill June 2023 -- July 2023
+\begin{itemize}
+    {'\\item Reduced service response latency by 60\% (~400 ms) for 5m+ BibleBot users across 60,000+ Discord servers by implementing a custom configurable time-to-live HTTP cache, creating a more responsive experience \\item Decreased HTML and JSON cache usage by 99\% and 39\%, respectively, by creating custom middleware to strip stored responses \\item Leveraged knowledge in Java, MVC, REST, and Git to learn and work in C\\# with the ASP.NET framework'}
+\end{itemize}
+
+ \vspace{-\baselineskip}\section*{\large\textbf{PROJECTS}}
+\vspace{-\baselineskip}
+\noindent\rule{\textwidth}{0.4pt}
+
+
+\noindent
+\textbfPersonal Website
+\begin{itemize}
+    {"\\item Researched, designed, and developed a personal portfolio website to showcase skills and learn front-end technology and design best practices, supporting Project Emory and RIDEmory's front-end/design team"}
+\end{itemize}
+\emph{Technologies:} React + Vite, TypeScript, HTML/CSS, Figma, Git, Firefox/Chrome Developer Tools
+
+\noindent
+\textbfRIDEmory
+\begin{itemize}
+    {"\\item Built a comprehensive rideshare solution for Emory's students through a self-updating database of ride information \\item Guided engineers through MongoDB GeoJSON indexing to filter searches for nearby rides and current traffic times \\item Used Java and Spring Boot to teach MVC/REST and promote collaboration within the project's back-end team"}
+\end{itemize}
+\emph{Technologies:} Java/Spring Boot, MongoDB Atlas, Python/Flask, React, Figma, Git, Google Maps/Routes API
+
+\noindent
+\textbfVoice Calculator
+\begin{itemize}
+    {'\\item Developed a hands-free calculator as a proof-of-concept for a lightweight, deployable voice-controlled application \\item Created modular grammar regular expressions to improve speech detection accuracy in noisy environments'}
+\end{itemize}
+\emph{Technologies:} Java, Sphinx4, MaryTTS
+
+ \vspace{-\baselineskip}
+\section*{\large\textbf{EXTRACURRICULARS}}
+\vspace{-\baselineskip}
+\noindent\rule{\textwidth}{0.4pt}
+
+
+\noindent
+\textbfProject Emory \hfill Atlanta, GA \\
+\emphCofounder/Secretary \hfill May 2023 -- Present
+\begin{itemize}
+    {"\\item Crafted engaging Spring Boot, MongoDB, and Git curriculum to enhance the technical proficiency of 20+ members \\item Provided working CS experience to 30+ students by establishing and running Emory's only open project-building club \\item Mentored 2 CS students by offering peer-programming opportunities, coursework guidance, and pre-professional help aimed at contributing to their overall success in software engineering"}
+\end{itemize}
+
+\noindent
+\textbfEmory Hack4Impact \hfill Atlanta, GA \\
+\emphSoftware Engineer \hfill December 2023 -- Present
+\begin{itemize}
+    {'\\item Designed and developed an internal operations webpage, including an announcements board, HR service page, personal dashboard, and resources page, to provide Odyssey Family Consulting Center with a unified employee experience \\item Leveraged knowledge in Figma to design pages based on client specifications and JavaScript to implement pages'}
+\end{itemize}
+
+ \vspace{-\baselineskip}
+\section*{\large\textbf{ADDITIONAL INFORMATION}}
+\vspace{-\baselineskip}
+\noindent\rule{\textwidth}{0.4pt}
+
+\noindent
+\textbfSoftware: (proficient): Java, Git, JavaScript/TypeScript, HTML/CSS, Python, (familiar): Shell, C, C\\#, Go\\ 
+\noindent
+\textbfInterests: Backpacking, Volleyball, Technical/Modded Minecraft, Linux, Performance Arts (Oboe and Guitar)\\ 
+
+\end{document}
