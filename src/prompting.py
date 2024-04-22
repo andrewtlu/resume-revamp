@@ -184,19 +184,23 @@ def sub_prompts(client: anthropic.Anthropic, resume: dict, key: str, user_input:
         print(f"Error: Template file for {key} not found.")
         return {}
 
-    # Initial prompt chain 1 : check for all positional argument queries given by user. 
-    prompt_initial = f"""{{ instructions": "Strictly use JSON structure outlined in the {key} key and do not add more keys. Follow the user_input for text editing operations in the {key} section.t":",
-                    "user_input": "{user_input}",
-                    "{key}": {json.dumps(resume[key])},     
-                    }}"""
+    # Initial prompt chain 1 : check for all positional argument queries given by user.
+    if  key == 'projects' or key == 'experience' or  key == "other":
+        prompt_initial = f"""{{ instructions": "Strictly use JSON structure outlined in the {key} key and do not add more keys. Follow the user_input for text editing operations in the {key} section.t":",
+                        "{key}": {json.dumps(resume)},     
+                        }}"""
+    else:
+        prompt_initial = f"""{{ instructions": "Strictly use JSON structure outlined in the {key} key and do not add more keys. Follow the user_input for text editing operations in the {key} section.t":",
+                        "user_input": "{user_input}",
+                        "{key}": {json.dumps(resume)},     
+                        }}"""
 
     messages = [{"role": "user", "content": prompt_initial}]
 
-    # Send the prompt to the Anthropic client   
     response = client.messages.create(
     model="claude-3-sonnet-20240229",
     max_tokens=4096,
-    system="You are an expert at following user positional instructions.",
+    system="You are an expert at following user editing commands.",
     temperature=0.5,
     messages=messages
     )
@@ -207,39 +211,35 @@ def sub_prompts(client: anthropic.Anthropic, resume: dict, key: str, user_input:
         print(section_data)
 
     #prompt chain 2: enhance the resume content
-    if key == "education" or key == "header":
+    if key == "education" or key == "header" or key == "other":
         return section_data
     else:
-        # need to work on positional stuff like delete last bullet point, or keep first bullet point
-        prompt = f""""{{instructions": "Use JSON structure outlined in the {key} key. You must utilize user_feedback into the {key} section in resume_content with the following improvements:",
+        prompt = f""""{{instructions": "Strictly follow the JSON structure outlined in the {key} key. You must utilize user_feedback into the {key} section in resume_content with the following improvements:",
             "user_feedback": {user_input},  
             "improvements": [   
-                "Rephrase descriptions for clarity and impact.",
-                "Restructure descriptions for better flow and readability.",
-                "Use only specified keys.",
+                "Please keep the number of values given for each section.",
+                "Change descriptions for better flow and readability if requested.",
                 "Leave Unknowns Blank.",
                 "Utilize Active Voice.",
                 "Use strong action verbs.",
             ],
-            "request": "Please return the edited resume content in JSON format and keep all keys in JSON structure.",
+            "request": "Please return the edited resume content in JSON format and only use keys defined in {key} key.",
             "{key}": {json.dumps(section_data)} 
         }}"""
 
-        messages = [{"role": "user", "content": prompt}]
+    messages = [{"role": "user", "content": prompt}]
 
-        # Send the prompt to the Anthropic client
-        response = client.messages.create(
-            model="claude-3-sonnet-20240229",
-            max_tokens=4096,
-            system="You are an expert resume consultant tasked with tailoring resumes to the highest professional standards. Your role is to meticulously follow user inputs, adapting your responses to enhance clarity, impact, and professionalism.",
-            temperature=0.5,
-            messages=messages
-        )
 
-        print(response.content)
+    response = client.messages.create(
+        model="claude-3-sonnet-20240229",
+        max_tokens=4096,
+        system="You are an expert at following user editing commands.",
+        temperature=0.5,
+        messages=messages
+    )
 
-    # Assuming handling of response is needed
-    # This should ideally parse the response and update the resume dictionary accordingly
+    print(response.content)
+
     if isinstance(response.content, list):
         concatenated_text = "".join([cb.text for cb in response.content if hasattr(cb, "text")])
 
