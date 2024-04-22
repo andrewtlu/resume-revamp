@@ -100,7 +100,7 @@ def initial_prompt(client: anthropic.Anthropic, resume: dict) -> dict:
     # dont delete this, it is easier fo rme to test isntead of deleting file path every time
     path_for_andrew = '/Users/andrewchung/Desktop/resume-revamper/src/resume_template.json'
     path = "./resume_template.json"
-    with open(path, "r") as f:
+    with open(path_for_andrew, "r") as f:
         template = json.load(f)
 
     prompt = f"""{{ "instructions": "please be critical while reviewing the resume and provide an edited version with the following improvements:",
@@ -176,25 +176,25 @@ def sub_prompts(client: anthropic.Anthropic, resume: dict, key: str, user_input:
         The improved resume.
     """
     # Load the JSON template for the specified section
-    path_for_andrew = f'./sub_json_templates/{key}.json'
-    try:
-        with open(path_for_andrew, "r") as f:
-            template = json.load(f)
-    except FileNotFoundError:
-        print(f"Error: Template file for {key} not found.")
-        return {}
+    # path_for_andrew = f'./sub_json_templates/{key}.json'
+    # try:
+    #     with open(path_for_andrew, "r") as f:
+    #         template = json.load(f)
+    # except FileNotFoundError:
+    #     print(f"Error: Template file for {key} not found.")
+    #     return {}
 
     # Initial prompt chain 1 : check for all positional argument queries given by user.
     if  key == 'projects' or key == 'experience':
-        prompt_initial = f"""{{ instructions": "Use JSON structure outlined in the {key} key and do not add more keys. Follow the user_input for text editing comands in the {key} section.
+        prompt_initial = f"""{{ instructions": "Use JSON structure outlined in the value input for "section". Follow the user_input for text editing comands in the given section.",
                         Bullet points, items, and things mean items in the list for descriptions",
                         "user_input": "{user_input}",
-                        "{key}": {json.dumps(resume)},     
+                        "section": {json.dumps(resume)},     
                         }}"""
     else:
-        prompt_initial = f"""{{ instructions": "Use JSON structure outlined in the {key} key and do not add more keys. Follow the user_input for text editing operations in the {key} section.",
+        prompt_initial = f"""{{ instructions": "Use JSON structure outlined in the value input for "section". Follow the user_input for text editing comands in the given section.",
                         "user_input": "{user_input}",
-                        "{key}": {json.dumps(resume)},     
+                        "section": {json.dumps(resume)},     
                         }}"""
 
     messages = [{"role": "user", "content": prompt_initial}]
@@ -216,7 +216,7 @@ def sub_prompts(client: anthropic.Anthropic, resume: dict, key: str, user_input:
     if key == "education" or key == "header" or key == "other":
         return section_data
     else:
-        prompt = f""""{{instructions": "Strictly follow the JSON structure outlined in the {key} key. You must utilize user_feedback into the {key} section in resume_content with the following improvements:",
+        prompt = f""""{{instructions": "Strictly follow the JSON structure outlined in the value of section. You must utilize user_feedback into the given section in resume_content with the following improvements:",
             "user_feedback": {user_input},  
             "improvements": [   
                 "ignore user_feedback that wants deletion or addition of bullet points, items, or things.",
@@ -226,8 +226,8 @@ def sub_prompts(client: anthropic.Anthropic, resume: dict, key: str, user_input:
                 "Utilize Active Voice.",
                 "Use strong action verbs.",
             ],
-            "request": "Please return the edited resume content in JSON format and only use keys defined in {key} key.",
-            "{key}": {json.dumps(section_data)} 
+            "request": "Please return the edited resume content in JSON format and only use keys defined in section key's value input.",
+            "section": {json.dumps(section_data)}
         }}"""
 
     messages = [{"role": "user", "content": prompt}]
