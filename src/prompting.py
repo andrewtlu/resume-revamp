@@ -131,7 +131,6 @@ def initial_prompt(client: anthropic.Anthropic, resume: dict) -> dict:
         max_tokens=4096,
         system="You are an expert resume consultant.",
         temperature=0.5,
-        presence_penalty=0.5,
         messages=messages
     )
 
