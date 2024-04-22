@@ -100,7 +100,7 @@ def initial_prompt(client: anthropic.Anthropic, resume: dict) -> dict:
     # dont delete this, it is easier fo rme to test isntead of deleting file path every time
     path_for_andrew = '/Users/andrewchung/Desktop/resume-revamper/src/resume_template.json'
     path = "./resume_template.json"
-    with open(path_for_andrew, "r") as f:
+    with open(path, "r") as f:
         template = json.load(f)
 
     prompt = f"""{{ "instructions": "please be critical while reviewing the resume and provide an edited version with the following improvements:",
@@ -176,7 +176,7 @@ def sub_prompts(client: anthropic.Anthropic, resume: dict, key: str, user_input:
         The improved resume.
     """
     # Load the JSON template for the specified section
-    path_for_andrew = f'/Users/andrewchung/Desktop/resume-revamper/src/sub_json_templates/{key}.json'
+    path_for_andrew = f'./sub_json_templates/{key}.json'
     try:
         with open(path_for_andrew, "r") as f:
             template = json.load(f)
