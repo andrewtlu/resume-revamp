@@ -131,6 +131,7 @@ def initial_prompt(client: anthropic.Anthropic, resume: dict) -> dict:
         max_tokens=4096,
         system="You are an expert resume consultant.",
         temperature=0.5,
+        presence_penalty=0.5,
         messages=messages
     )
 
@@ -152,6 +153,10 @@ def initial_prompt(client: anthropic.Anthropic, resume: dict) -> dict:
         print("JSON decoding error:", e)
         print("Problematic JSON string:", re.sub(r"^.*?{", "{", concatenated_text).strip(" `"))
         return None
+
+
+
+
 
 
 def sub_prompts(client: anthropic.Anthropic, resume: dict, key: str, user_input: str) -> dict:
@@ -181,21 +186,48 @@ def sub_prompts(client: anthropic.Anthropic, resume: dict, key: str, user_input:
         print(f"Error: Template file for {key} not found.")
         return {}
 
-    # Prepare the prompt for the client
+    # Initial prompt chain 1 : check for all positional argument queries given by user. 
+    prompt_initial = f"""{{ instructions": "Strictly use JSON structure outlined in the {key} key and do not add more keys. Follow the user_input for text editing operations in the {key} section.t":",
+                    "user_input": "{user_input}",
+                    "{key}": "[{json.dumps(resume[key])},]",     
+                    }}"""
 
+    messages = [{"role": "user", "content": prompt_initial}]
+
+    # Send the prompt to the Anthropic client   
+    response = client.messages.create(
+    model="claude-3-sonnet-20240229",
+    max_tokens=4096,
+    system="You are an expert at following user positional instructions.",
+    temperature=0.5,
+    messages=messages
+    )
+
+    if isinstance(response.content, list):
+        concatenated_text = "".join([cb.text for cb in response.content if hasattr(cb, "text")])
+
+    try:
+        section_data = json.loads(re.sub(r"^[^{]*", "", concatenated_text).strip(" `"))
+        print(section_data)
+
+    except json.JSONDecodeError as e:
+        print("JSON decoding error:", e)
+        print("Problematic JSON string:", re.sub(r"^.*?{", "{", concatenated_text).strip(" `"))
+        return None
+
+    #prompt chain 2: enhance the resume content
     if key == "education" or key == "header":
-        prompt = f"""{{ instructions": "Use JSON structure outlined in the {key} key. Incorporate user_feedback into the {key} section in resume_content and return the {key} values with the following improvements:",
+        prompt = f"""{{ instructions": "Strictly use JSON structure outlined in the {key} key and do not add more keys. Incorporate user_feedback into the {key} section in resume_content and return the {key} values with the following improvements:",
             "improvements": [
-                "Rephrase descriptions for clarity and impact.",
                 "Restructure descriptions for better flow and readability.",
-                "Use only specified fields.",
+                "Use only specified keys.",
                 "Leave Unknowns Blank.",
                 "Use the JSON_structure provided."
             ],
             "user_feedback": "{user_input}",
             "request": "Please return the edited resume content in JSON format.",
-            "resume_content": "[
-                {json.dumps(resume)},
+            "{key}": "[
+                {json.dumps(section_data)},
             ]",
             }}"""
 
@@ -210,20 +242,20 @@ def sub_prompts(client: anthropic.Anthropic, resume: dict, key: str, user_input:
             messages=messages
         )
     else:
-        prompt = f""""{{instructions": "Use JSON structure outlined in the {key} key. Incorporate user_feedback into the {key} section in resume_content and return the {key} values with the following improvements:",
-            "improvements": [
-                "Follow user_feedback for the {key} section.",
+        # need to work on positional stuff like delete last bullet point, or keep first bullet point
+        prompt = f""""{{instructions": "Use JSON structure outlined in the {key} key. You must utilize user_feedback into the {key} section in resume_content with the following improvements:",
+            "user_feedback": {user_input},  
+            "improvements": [   
                 "Rephrase descriptions for clarity and impact.",
                 "Restructure descriptions for better flow and readability.",
+                "Use only specified keys.",
+                "Leave Unknowns Blank.",
                 "Utilize Active Voice.",
                 "Use strong action verbs.",
-                "Use quantifiable data.",
-                "Use only specified fields.",
-                "Leave Unknowns Blank."
+                "You must keep all the keys in the JSON structure.",
             ],
-            "user_feedback": {user_input},  
             "request": "Please return the edited resume content in JSON format.",
-            "resume_content": {json.dumps(resume)} 
+            "{key}": {json.dumps(section_data)} 
         }}"""
 
         messages = [{"role": "user", "content": prompt}]
@@ -232,10 +264,12 @@ def sub_prompts(client: anthropic.Anthropic, resume: dict, key: str, user_input:
         response = client.messages.create(
             model="claude-3-sonnet-20240229",
             max_tokens=4096,
-            system="You are an expert resume consultant who edits resumes with user feedback.",
+            system="You are an expert resume consultant tasked with tailoring resumes to the highest professional standards. Your role is to meticulously follow user inputs, adapting your responses to enhance clarity, impact, and professionalism.",
             temperature=0.5,
             messages=messages
         )
+
+        print(response.content)
 
     # Assuming handling of response is needed
     # This should ideally parse the response and update the resume dictionary accordingly
