@@ -5,6 +5,7 @@ import resume_compiler as rc
 import resume_parser as rp
 from dotenv import load_dotenv
 import json_to_tex as jt
+import pdflatex
 
 
 # # example message from claude 3
@@ -210,8 +211,10 @@ def compile_resume(filepath: str):
         The improved resume data.
     """
 
-    #TODO add the compile function here
-
+    # TODO add the compile function here
+    with open(filepath, 'rb') as f:
+        pdfl = pdflatex.PDFLaTeX.from_binarystring(f.read(), 'my_file')
+    pdf, log, cp = pdfl.create_pdf()
     pass
 
 
@@ -232,7 +235,7 @@ if __name__ == "__main__":
     improve_resume(client, resume)
 
     print("Now that youre resume is looking great, let's compile it!")
-    compile_resume('/resume-revamper/src/compiled.tex')
+    compile_resume('src/compiled.tex')
     print("Resume compiled successfully! To view the compiled resume, check the path you entered. To continue improving this iteration of your resume, rerun this program and load the compiled resume json for best performance!")
 
     # DONE input resume path
