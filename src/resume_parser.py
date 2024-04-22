@@ -29,20 +29,21 @@ def parse_resume(client: anthropic.Anthropic, pdf_path: str):
     # dont delete this, it is easier fo rme to test isntead of deleting file path every time
     path_for_andrew = '/Users/andrewchung/Desktop/resume-revamper/src/resume_template.json'
     path = './resume_template.json'
-    with open(path, "r") as f:
+    with open(path_for_andrew, "r") as f:
         template = json.load(f)
-    # prompt = "Use the strict following JSON structure " + json.dumps(template) + " (no unspecified fields, filling unknowns with 'none') to structure the following resume information into the JSON format: " + text
+    prompt = "Use the strict following JSON structure " + json.dumps(template) + " no unspecified fields, keep all keys and filling unknowns with 'none', to structure the following resume information into the JSON format: " + text
 
-    prompt =f""" {{
-            "instruction": "Use the strict following JSON structure: {json.dumps(template)} to structure resumeInformation.",
-            "instructions": [
-                "Use only specified fields.",
-                "Leave Unknowns Blank.",
-                "Use the JSON structure provided.",
-            ] 
-            "resumeInformation": {text},
-            "request": "Please return the edited resume content in JSON format.",
-            }}"""
+    # prompt =f""" {{
+    #         "instruction": "Use the strict following JSON structure: {json.dumps(template)} to structure resumeInformation.",
+    #         "instructions": [
+    #             "Use only specified fields.",
+    #             "Never add more keys.",
+    #             "Leave Unknowns Blank.",
+    #             "Use the JSON structure provided.",
+    #         ] 
+    #         "resumeInformation": {text},
+    #         "request": "Please return the edited resume content in JSON format.",
+    #         }}"""
 
     json_response = send_to_claude_ai(client, prompt)
 
