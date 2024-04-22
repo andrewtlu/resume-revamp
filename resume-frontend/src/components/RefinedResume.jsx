@@ -25,10 +25,9 @@ const handleRegenerate = async (section, index = null) => {
   setIsLoading(true);
 
   const contentToRegenerate = typeof index === 'number' ? resume[section][index] : resume[section];
-  console.log(contentToRegenerate)
   try {
     const requestBody = {
-      sectionContent: contentToRegenerate,
+      resume: contentToRegenerate,
       key: section,
       suggestion: promptText
     };
