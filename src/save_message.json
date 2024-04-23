@@ -1,94 +1,169 @@
 {
-    "header": {
-        "name": "Andrew Lu",
-        "address": "1762 Clifton Rd NE MSC 221290, Atlanta, GA 30322",
-        "email": "andrew.lu@emory.edu",
-        "phone": "(404) 786-6427",
-        "website": [
-            "andrewtlu.github.io",
-            "www.boredbutton.com"
-        ]
-    },
+    "header": [
+        {
+            "name": "Grace Yang",
+            "address": "",
+            "email": "gyang58@emory.edu",
+            "phone": "(678)978-5671",
+            "website": []
+        }
+    ],
     "education": [
         {
-            "school": "Emory University",
-            "degree": "Bachelor of Science in Computer Science, Minor in Applied Math",
-            "graduation": "August 2022 -- Present",
+            "school": "Emory University Goizueta Business School",
+            "degree": "Bachelor of Business Administration",
+            "start": "August 2023",
+            "end": "May 2027",
             "gpa": "4.0/4.0",
             "details": [
-                "Dean's List: Fall 2022, Spring 2023, Fall 2023",
-                "Relevant Coursework: Data Structures and Algorithms, Computer Architecture, Algorithms, Linear Algebra, Machine Learning, Computational Linguistics, Data Mining, Practicum",
-                "Awards/Distinctions: Phi Eta Sigma Honor Society, National Merit Scholar"
+                "Relevant Courses: Data and Decision Analytics.",
+                "Advanced Calculus for Data Scientists.",
+                "Linear Algebra.",
+                "Tech Toolbox A: Excel."
             ]
         }
     ],
     "experience": [
         {
-            "company": "Emory Libraries, Computing Center at Cox Hall",
-            "position": "Computing Center Technology Consultant",
-            "location": "Atlanta, GA",
-            "start": "August 2023",
+            "company": "Emory Research Grants & Contract",
+            "position": "Intern",
+            "location": "",
+            "start": "Jan. 2024",
             "end": "Present",
             "description": [
-                "Fostered a friendly and efficient environment by managing the Computing Center's audiovisual system, ensuring seamless operation for students and faculty.",
-                "Delivered a secure and up-to-date online experience for over 200 students by maintaining and servicing 32 computers and 4 printers, ensuring optimal performance and availability."
+                "Trained under lead financial analyst, creating proposals utilizing Emory's award management system.",
+                "Contacted analysts and compared billing limits of grants to authorized limits, ensuring compliance.",
+                "Actively participated in monthly staff meetings, contributing insights and ideas."
             ]
         },
         {
-            "company": "Kerygma Digital",
-            "position": "Software Engineer",
-            "location": "Remote",
-            "start": "June 2023",
+            "company": "Panera Bread",
+            "position": "Line Cook and Cashier",
+            "location": "",
+            "start": "Feb. 2023",
             "end": "July 2023",
             "description": [
-                "Optimized the service response latency by 60% (~400 ms) by implementing a custom configurable time-to-live HTTP cache, enhancing the responsiveness for over 5 million BibleBot users across 60,000+ Discord servers.",
-                "Reduced HTML and JSON cache usage by 99% and 39%, respectively, by creating custom middleware to efficiently strip stored responses, improving overall performance.",
-                "Leveraged knowledge in Java, MVC, REST, and Git to quickly adapt and contribute to the C# ASP.NET framework, demonstrating versatility and a strong learning aptitude."
+                "Collaborated seamlessly with cross-functional team members during high-stress rush hours, maintaining composure.",
+                "Consistently monitored inventory levels and updated expiry dates, minimizing waste and ensuring food safety.",
+                "Demonstrated commitment by communicating effectively with managers regarding schedules and arriving early for shifts."
+            ]
+        },
+        {
+            "company": "Halftime Sports",
+            "position": "Marketing Intern",
+            "location": "",
+            "start": "Sept. 2022",
+            "end": "Jan. 2023",
+            "description": [
+                "Collected and organized data on over 100 basketball clubs nationwide using Excel, enabling targeted marketing efforts.",
+                "Managed social media (Twitter) by curating engaging content, growing follower base, and creating posts.",
+                "Facilitated seamless execution of basketball tryouts and games for over 700 kids, ensuring a positive experience."
             ]
         }
     ],
     "projects": [],
     "extracurriculars": [
         {
-            "organization": "Project Emory",
-            "position": "Cofounder/Secretary",
-            "location": "Atlanta, GA",
-            "start": "May 2023",
+            "organization": "Emory Esports",
+            "position": "Co-President",
+            "location": "",
+            "start": "Sept. 2023",
             "end": "Present",
             "description": [
-                "Crafted an engaging Spring Boot, MongoDB, and Git curriculum to enhance the technical proficiency of over 20 members, fostering their growth and development.",
-                "Provided hands-on software engineering experience to over 30 students by establishing and managing Emory's only open project-building club, bridging the gap between theory and practice.",
-                "Mentored two computer science students by offering peer-programming opportunities, coursework guidance, and pre-professional advice, contributing to their overall success in software engineering."
+                "Collaborated with companies like Hoyoverse, coordinating a successful event attended by over 100 students.",
+                "Led an executive board of 10 members, hosting monthly events for the general student body.",
+                "Spearheaded marketing efforts by creating visually appealing social media graphics and videos, posting on team accounts."
             ]
         },
         {
-            "organization": "Emory Hack4Impact",
-            "position": "Software Engineer",
-            "location": "Atlanta, GA",
-            "start": "December 2023",
+            "organization": "Emory ASO Leadership Experience Advising Program",
+            "position": "LEAP Mentee",
+            "location": "",
+            "start": "Sept. 2023",
             "end": "Present",
             "description": [
-                "Designed and developed an internal operations webpage, including an announcements board, HR service page, personal dashboard, and resources page, to provide the Odyssey Family Consulting Center with a unified employee experience.",
-                "Leveraged Figma to design visually appealing pages based on client specifications and JavaScript to implement the desired functionality, ensuring a seamless user experience."
+                "Planned, budgeted, pitched, and executed cultural, panelist, and social events for over 270 attendees.",
+                "Participated in weekly workshops on Asian-American issues, leadership, and professional development.",
+                "Tabled twice a month, connecting with undergraduate students and inviting them to events."
+            ]
+        },
+        {
+            "organization": "Emory Film and Television Club",
+            "position": "Post Production Committee",
+            "location": "",
+            "start": "Sept, 2023",
+            "end": "Present",
+            "description": [
+                "Assisted with camera, lighting, and sound operations on student production sets.",
+                "Organized video files, synced footage, and selected shots for video editing.",
+                "Learned to use video editing software through hands-on workshops."
+            ]
+        },
+        {
+            "organization": "Northview HS Student Council",
+            "position": "Communications Committee Member",
+            "location": "",
+            "start": "Aug. 2022",
+            "end": "May 2023",
+            "description": [
+                "Planned, set up, and volunteered at indoor and outdoor events for the entire student body of 800.",
+                "Created and posted flyers adhering to teacher advisor's guidelines for student council events.",
+                "Hosted themed homecoming activities, engaging approximately 400 students."
+            ]
+        },
+        {
+            "organization": "Northview HS Podcast",
+            "position": "Editor in Chief",
+            "location": "",
+            "start": "Aug. 2021",
+            "end": "May 2023",
+            "description": [
+                "Trained peers on using audio editing software and conducting interviews for podcasts.",
+                "Managed weekly videos and podcast graphics on Instagram, garnering up to 1.3k views per video.",
+                "Led monthly brainstorming and research sessions in class."
             ]
         }
     ],
     "other": [
         {
-            "title": "Software",
+            "title": "Honors & Awards",
             "content": [
-                "(proficient): Java, Git, JavaScript/TypeScript, HTML/CSS, Python",
-                "(familiar): Shell, C, C#, Go"
+                "National Merit Scholarship",
+                "Dean's List \u2013 Fall 2023",
+                "Roswell Woman's Club Scholarship (2023)",
+                "National Honor Society (2022)",
+                "Georgia Scholastic Press Association Podcast Superior (2022)"
+            ]
+        },
+        {
+            "title": "Skills",
+            "content": [
+                "Microsoft Excel",
+                "Canva",
+                "Capcut",
+                "Google Suite",
+                "Audition",
+                "Illustrator (Basic)",
+                "Premiere Pro (Basic)"
+            ]
+        },
+        {
+            "title": "Other Activities",
+            "content": [
+                "Emory Women in Business",
+                "Emory Filipino Student Association",
+                "Emory Rock Climbing Team",
+                "Northview HS National Chinese Honor Society President",
+                "Northview HS Bolt Film Club"
             ]
         },
         {
             "title": "Interests",
             "content": [
-                "Backpacking",
-                "Volleyball",
-                "Technical/Modded Minecraft",
-                "Linux",
-                "Performance Arts (Oboe and Guitar)"
+                "Esports",
+                "Origami",
+                "Miniature set building",
+                "Concert-going"
             ]
         }
     ]

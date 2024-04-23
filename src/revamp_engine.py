@@ -183,6 +183,7 @@ def improve_resume(client: anthropic.Anthropic, resume: dict) -> dict:
 
     print('resume dict')
     print(response.content[0].text)
+    print('resume dict')
     resume_dict = json.loads(response.content[0].text)
     return resume_dict
 
@@ -214,8 +215,10 @@ def compile_resume(filepath: str):
         The improved resume data.
     """
 
-    command = ['lualatex', '-output-directory=' + '../dat/output', filepath]
+    command = ['lualatex', '--interaction=nonstopmode','-output-directory=' + '../dat/output', filepath]
+    print(f"Compiling resume using command: {' '.join(command)}")
     result = subprocess.run(command, text = True, capture_output=True)
+    print(result.stdout)
     if result.returncode == 0:
         print("Compilation successful: {filepath} has been compiled to PDF.")
         print(result.stdout)

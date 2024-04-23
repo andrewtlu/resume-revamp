@@ -11,11 +11,13 @@ def generate_resume_latex(template_file, json_file, output_file):
         resume_data = json.load(file)
     print(resume_data)
     # Replace the placeholders in the template with the corresponding data
-    template = template.replace('First Name (Nickname) Last Name', f"{resume_data['header']['name']}")
-    template = template.replace('Emory Email Address', resume_data['header']['email'])
-    template = template.replace('Phone Number', resume_data['header']['phone'])
+    header_dict = resume_data['header'][0]
+    print(header_dict)
+    template = template.replace('First Name (Nickname) Last Name', f"{header_dict['name']}")
+    template = template.replace('Emory Email Address', header_dict['email'])
+    template = template.replace('Phone Number', header_dict['phone'])
     website_number = 0
-    website_strings = ', '.join(r'\\href{https://' + website + '}' + '{Website ' + str(website_number + 1) + ' \\\\faInfo }' for website_number, website in enumerate(resume_data['header']['website']))
+    website_strings = ', '.join(r'\\href{https://' + website + '}' + '{Website ' + str(website_number + 1) + ' \\\\faInfo }' for website_number, website in enumerate(header_dict['website']))
     template = re.sub(r'\\href\{https://.*?\}\{Website  \\faInfo\}', website_strings, template)
     # \href{https://www.linkedin.com/in/janehershman/}{Website  \faInfo}
 

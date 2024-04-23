@@ -61,7 +61,7 @@ def parse_resume_endpoint():
         
         os.remove(pdf_path)
 
-        print(parsed_resume)
+        print({'refinedResume': parsed_resume})
 
         return Response(json.dumps({'message': 'Resume parsed successfully', 'refinedResume': parsed_resume}, indent=2), mimetype='application/json', status=200)
     else:
@@ -73,16 +73,17 @@ def parse_resume_endpoint():
 @app.route('/revamp_resume', methods=['POST'])
 def revamp_resume():
     data = request.get_json()
-    resume_data = data.get('resume', {})
-    # print(resume_data)
+    resume_data = data.get('resume_content', {})
+    print(resume_data)
     client = anthropic.Anthropic()
 
     # resume_data = re.correct_resume(resume_data)
-    improved_resume = re.improve_resume(client, resume_data)
+    # improved_resume = re.improve_resume(client, resume_data)
     # print('improved resume')
     # print(improved_resume['resume_content'][0])
-    re.convert_json_to_tex(improved_resume['resume_content'][0])
+    re.convert_json_to_tex(resume_data)
     re.compile_resume('compiled.tex')
+    re.clean_up('../dat/output', 'compiled.tex')
     return jsonify({'message': 'Resume revamped successfully'})
 
 if __name__ == "__main__":
