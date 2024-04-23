@@ -25,7 +25,7 @@ def generate_resume_latex(template_file, json_file, output_file):
     # Education section
 
     # remove from the template if there is no education data
-    if resume_data['education'] == []:
+    if resume_data['education'] == ['none']:
         pattern = r"\\section\*{\\large\\textbf{EDUCATION}.*(?=\\section\*{\\large\\textbf{WORK EXPERIENCE})"
         replacement = re.search(pattern, template, flags=re.DOTALL).group(0)
         template = template.replace(replacement, '')
@@ -92,7 +92,7 @@ def generate_resume_latex(template_file, json_file, output_file):
 
     # Work Experience section
     # remove from the template if there is no work experience data
-    if resume_data['experience'] == []:
+    if resume_data['experience'] == ['none']:
         pattern = r"\\section\*{\\large\\textbf{WORK EXPERIENCE}.*(?=\\section\*{\\large\\textbf{PROJECTS})"
         replacement = re.search(pattern, template, flags=re.DOTALL).group(0)
         template = template.replace(replacement, '')
@@ -128,7 +128,7 @@ def generate_resume_latex(template_file, json_file, output_file):
     # projects section
 
     # remove from the template if there is no project data
-    if resume_data['projects'] == []:
+    if resume_data['projects'] == ['none']:
         pattern = r"\\section\*{\\large\\textbf{PROJECTS}.*(?=\\section\*{\\large\\textbf{EXTRACURRICULARS})"
         replacement = re.search(pattern, template, flags=re.DOTALL).group(0)
         template = template.replace(replacement, '')
@@ -161,7 +161,7 @@ def generate_resume_latex(template_file, json_file, output_file):
     # Extracurriculars section
 
     # remove from the template if there is no extracurricular data
-    if resume_data['extracurriculars'] == []:
+    if resume_data['extracurriculars'] == ['none']:
         pattern = r"\\section\*{\\large\\textbf{EXTRACURRICULARS}.*(?=\\section\*{\\large\\textbf{ADDITIONAL INFORMATION})"
         replacement = re.search(pattern, template, flags=re.DOTALL).group(0)
         template = template.replace(replacement, '')
@@ -197,7 +197,7 @@ def generate_resume_latex(template_file, json_file, output_file):
 
     # remove from the template if there is no additional information data
 
-    if resume_data['other'] == []:
+    if resume_data['other'] == ['none']:
         pattern = r"\\section\*{\\large\\textbf{ADDITIONAL INFORMATION}.*(?=\\end{document})"
         replacement = re.search(pattern, template, flags=re.DOTALL).group(0)
         template = template.replace(replacement, '')

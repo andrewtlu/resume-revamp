@@ -1,3 +1,5 @@
+import time
+
 from flask import Flask, request, jsonify
 from flask import Response
 import json
@@ -8,6 +10,7 @@ from resume_parser import parse_resume
 import os
 from dotenv import load_dotenv
 from flask_cors import CORS
+from flask import send_file, after_this_request
 import revamp_engine as re
 
 load_dotenv()
@@ -76,15 +79,15 @@ def revamp_resume():
     resume_data = data.get('resume_content', {})
     print(resume_data)
     client = anthropic.Anthropic()
-
-    # resume_data = re.correct_resume(resume_data)
-    # improved_resume = re.improve_resume(client, resume_data)
-    # print('improved resume')
-    # print(improved_resume['resume_content'][0])
     re.convert_json_to_tex(resume_data)
     re.compile_resume('compiled.tex')
     re.clean_up('../dat/output', 'compiled.tex')
-    return jsonify({'message': 'Resume revamped successfully'})
+
+    pdf_path = os.path.join('../dat/output', 'compiled.pdf')
+    if os.path.exists(pdf_path):
+        return send_file(pdf_path, as_attachment=True)
+    else:
+        return jsonify({'error': 'PDF file not found'}), 404
 
 if __name__ == "__main__":
     app.run(port=5000, debug=True)

@@ -1,166 +1,121 @@
 {
   "header": [
     {
-      "name": "Grace Yang",
-      "address": "",
-      "email": "gyang58@emory.edu",
-      "phone": "(678)978-5671",
-      "website": []
+      "name": "Frederic Guintu",
+      "address": "1946 STARVINE WAY, Atlanta, GA 30322",
+      "email": "frederic.guintu@emory.edu",
+      "phone": "(706) 888-4062",
+      "website": [
+        "LinkedIn"
+      ]
     }
   ],
   "education": [
     {
-      "school": "Emory University Goizueta Business School",
-      "degree": "Bachelor of Business Administration",
-      "start": "",
-      "end": "May 2027",
-      "gpa": "4.0/4.0",
+      "school": "Emory University",
+      "degree": "BS joint major in Computer Science and Mathematics, Minor in Physics",
+      "start": "August 2021",
+      "end": "Expected May 2025",
+      "gpa": "3.85/4.0",
       "details": [
-        "Relevant Courses: Data and Decision Analytics, Advanced Calculus for Data Scientists, Linear Algebra, Tech Toolbox A: Excel"
+        "Related Courses: Data Structures and Algorithms, Advanced Computer Architecture/Machine Level Programming, Programming for Mathematics of Data Science, Quantum Computing, Computational Linguistics, Artificial Intelligence",
+        "Relevant Skills: Java, C, Python, MATLAB, NumPy, Pandas, Unity, Scrum, Object Oriented Programming, LaTeX"
       ]
     }
   ],
   "experience": [
     {
-      "company": "Emory Research Grants & Contract",
-      "position": "Intern",
-      "location": "",
-      "start": "Jan. 2024",
+      "company": "Computing Center at Cox Hall",
+      "position": "Tech Consultant",
+      "location": "Atlanta, GA",
+      "start": "August 2023",
+      "end": "December 2023",
+      "description": [
+        "Delivered exceptional customer service as part of the Student Digital Life team, fostering a welcoming environment for students to study and collaborate.",
+        "Efficiently troubleshot technology issues, including printing, desktop support, and network connectivity, ensuring seamless operations.",
+        "Collaborated effectively with a team to provide comprehensive technical assistance, contributing to an enhanced user experience."
+      ]
+    },
+    {
+      "company": "EUnite: Madness in the Abyss",
+      "position": "Project Member",
+      "location": "Atlanta, GA",
+      "start": "June 2023",
       "end": "Present",
       "description": [
-        "Trained under lead financial analyst, creating proposals utilizing Emory's award management system.",
-        "Contacted analysts and compared billing limits of grants to authorized limits, ensuring compliance.",
-        "Actively participated in monthly staff meetings, contributing insights and ideas."
+        "Spearheaded the development of an innovative Unity-based two-dimensional roguelike game, focusing on captivating gameplay mechanics and immersive storytelling.",
+        "Collaborated seamlessly within a multidisciplinary team to design and implement engaging levels, character models, and interactive environments, elevating player experience.",
+        "Leveraged agile development methodologies to effectively manage project timelines and milestones, ensuring timely delivery while maintaining high standards of quality."
       ]
     },
     {
-      "company": "Panera Bread",
-      "position": "Line Cook and Cashier",
-      "location": "",
-      "start": "Feb. 2023",
-      "end": "July 2023",
+      "company": "IT&E",
+      "position": "Summer Intern",
+      "location": "Saipan, MP",
+      "start": "June 2022",
+      "end": "July 2022",
       "description": [
-        "Collaborated seamlessly with cross-functional team members during high-stress rush hours, maintaining composure.",
-        "Consistently monitored inventory levels and updated expiry dates, minimizing waste and ensuring food safety.",
-        "Demonstrated commitment by communicating effectively with managers regarding schedules and arriving early for shifts."
-      ]
-    },
-    {
-      "company": "Halftime Sports",
-      "position": "Marketing Intern",
-      "location": "",
-      "start": "Sept. 2022",
-      "end": "Jan. 2023",
-      "description": [
-        "Collected and organized data on over 100 basketball clubs nationwide using Excel, enabling targeted marketing efforts.",
-        "Managed social media (Twitter) by curating engaging content, growing follower base, and creating posts.",
-        "Facilitated seamless execution of basketball tryouts and games for over 700 kids, ensuring a positive experience."
+        "Gained hands-on experience by shadowing the Internet Protocol Network department of a leading telecommunications business in Saipan.",
+        "Assisted with on-site repairs at various roadside network modules and regional network hubs, contributing to network reliability.",
+        "Contributed to the optimization and troubleshooting of network performance, utilizing diagnostic tools and maintenance procedures."
       ]
     }
   ],
-  "projects": [],
+  "projects": [
+    "none"
+  ],
   "extracurriculars": [
     {
-      "organization": "Emory Esports",
-      "position": "Co-President",
-      "location": "",
-      "start": "Sept. 2023",
+      "organization": "Project Emory",
+      "position": "Vice President, Co-Founder",
+      "location": "Atlanta, GA",
+      "start": "August 2023",
       "end": "Present",
       "description": [
-        "Collaborated with companies like Hoyoverse, coordinating a successful event attended by over 100 students.",
-        "Led an executive board of 10 members, hosting monthly events for the general student body.",
-        "Spearheaded marketing efforts by creating visually appealing social media graphics and videos, posting on team accounts."
+        "Collaborated with co-founding members to establish a vibrant community at Emory University dedicated to computer science project building.",
+        "Conducted technical presentations to foster self-learning and knowledge-sharing among project members.",
+        "Spearheaded the chartering process, successfully navigating the college's legislation system to establish a new club."
       ]
     },
     {
-      "organization": "Emory ASO Leadership Experience Advising Program",
-      "position": "LEAP Mentee",
-      "location": "",
-      "start": "Sept. 2023",
-      "end": "Present",
-      "description": [
-        "Planned, budgeted, pitched, and executed cultural, panelist, and social events for over 270 attendees.",
-        "Participated in weekly workshops on Asian-American issues, leadership, and professional development.",
-        "Tabled twice a month, connecting with undergraduate students and inviting them to events."
-      ]
-    },
-    {
-      "organization": "Emory Film and Television Club",
-      "position": "Post Production Committee",
-      "location": "",
-      "start": "Sept, 2023",
-      "end": "Present",
-      "description": [
-        "Assisted with camera, lighting, and sound operations on student production sets.",
-        "Organized video files, synced footage, and selected shots for video editing.",
-        "Learned to use video editing software through hands-on workshops."
-      ]
-    },
-    {
-      "organization": "Northview HS Student Council",
-      "position": "Communications Committee Member",
-      "location": "",
-      "start": "Aug. 2022",
+      "organization": "Filipino Student Association",
+      "position": "President (2023 \u2013 2024), Treasurer (2021 \u2013 2023)",
+      "location": "Atlanta, GA",
+      "start": "September 2021",
       "end": "May 2023",
       "description": [
-        "Planned, set up, and volunteered at indoor and outdoor events for the entire student body of 800.",
-        "Created and posted flyers adhering to teacher advisor's guidelines for student council events.",
-        "Hosted themed homecoming activities, engaging approximately 400 students."
+        "Expertly managed the organization's funding, overseeing budgeting, reimbursements, and financial operations for community-building events.",
+        "Revitalized the FSA organization after a year of inactivity, assuming the role of President and primary risk manager.",
+        "Served as lead treasurer for collaborative projects with non-profit organizations such as CPACS and AAJC, demonstrating strong financial acumen."
       ]
     },
     {
-      "organization": "Northview HS Podcast",
-      "position": "Editor in Chief",
-      "location": "",
-      "start": "Aug. 2021",
-      "end": "May 2023",
+      "organization": "Asian Student Organization",
+      "position": "Leadership Experience Advising Program",
+      "location": "Atlanta, GA",
+      "start": "October 2021",
+      "end": "Present",
       "description": [
-        "Trained peers on using audio editing software and conducting interviews for podcasts.",
-        "Managed weekly videos and podcast graphics on Instagram, garnering up to 1.3k views per video.",
-        "Led monthly brainstorming and research sessions in class."
+        "Participated in a year-long program focused on developing leadership and professional skills, fostering personal growth.",
+        "Actively engaged as a member of the National Association of Asian American Professionals \u2013 NAAAP Atlanta Branch.",
+        "Promoted to LEAP Chair, continuing involvement in the Asian Student Organization's executive board, demonstrating dedication and leadership potential."
       ]
     }
   ],
   "other": [
     {
-      "title": "Honors & Awards",
+      "title": "Honors and Awards",
       "content": [
-        "National Merit Scholarship",
-        "Dean's List \u2013 Fall 2023",
-        "Roswell Woman's Club Scholarship (2023)",
-        "National Honor Society (2022)",
-        "Georgia Scholastic Press Association Podcast Superior (2022)"
+        "Questbridge Scholar: matched to Emory University to receive full scholarship.",
+        "Dean's List \u2013 Spring 2023: recognizes full-time students in the top 20 percent of their class by semester GPA.",
+        "Salutatorian/National AP Scholar with Distinction"
       ]
     },
     {
-      "title": "Skills",
+      "title": "Additional Skills and Interests",
       "content": [
-        "Microsoft Excel",
-        "Canva",
-        "Capcut",
-        "Google Suite",
-        "Audition",
-        "Illustrator (Basic)",
-        "Premiere Pro (Basic)"
-      ]
-    },
-    {
-      "title": "Other Activities",
-      "content": [
-        "Emory Women in Business",
-        "Emory Filipino Student Association",
-        "Emory Rock Climbing Team",
-        "Northview HS National Chinese Honor Society President",
-        "Northview HS Bolt Film Club"
-      ]
-    },
-    {
-      "title": "Interests",
-      "content": [
-        "Esports",
-        "Origami",
-        "Miniature set building",
-        "Concert-going"
+        "Language: Fluent in written and conversational English, Basic comprehension of written and conversational Mandarin",
+        "Interests: League of Legends, Teamfight Tactics, mathematics, physics, volleyball, software development, space exploration, computer technology, website design, video games, manga, anime"
       ]
     }
   ]
