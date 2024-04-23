@@ -1,121 +1,180 @@
 {
   "header": [
     {
-      "name": "Frederic Guintu",
-      "address": "1946 STARVINE WAY, Atlanta, GA 30322",
-      "email": "frederic.guintu@emory.edu",
-      "phone": "(706) 888-4062",
+      "name": "Jin Seok (James) Park",
+      "address": "",
+      "email": "james.park@emory.edu",
+      "phone": "+1 (470) 920-0719",
       "website": [
-        "LinkedIn"
+        "linkedin.com/in/jin-seok-park",
+        "github.com/jspgr33n"
       ]
     }
   ],
   "education": [
     {
-      "school": "Emory University",
-      "degree": "BS joint major in Computer Science and Mathematics, Minor in Physics",
-      "start": "August 2021",
-      "end": "Expected May 2025",
-      "gpa": "3.85/4.0",
+      "school": "Emory University, Emory College of Arts and Sciences",
+      "degree": "Bachelor of Science in Quantitative Sciences: Informatics / Minor in Spanish",
+      "start": "",
+      "end": "May 2025",
+      "gpa": "3.62/4.0",
       "details": [
-        "Related Courses: Data Structures and Algorithms, Advanced Computer Architecture/Machine Level Programming, Programming for Mathematics of Data Science, Quantum Computing, Computational Linguistics, Artificial Intelligence",
-        "Relevant Skills: Java, C, Python, MATLAB, NumPy, Pandas, Unity, Scrum, Object Oriented Programming, LaTeX"
+        "Relevant Courses: ML, AI, Prob. & Stats, Stat. Computing, DB Sys., Regression Analysis, Stat. Computing w/ Python & R"
       ]
     }
   ],
   "experience": [
     {
-      "company": "Computing Center at Cox Hall",
-      "position": "Tech Consultant",
+      "company": "Atlanta Regional Commission (ARC)",
+      "position": "QTM Data Science for Social Good Practicum Fellowship",
       "location": "Atlanta, GA",
-      "start": "August 2023",
-      "end": "December 2023",
+      "start": "Jun 2023",
+      "end": "Aug 2023",
       "description": [
-        "Delivered exceptional customer service as part of the Student Digital Life team, fostering a welcoming environment for students to study and collaborate.",
-        "Efficiently troubleshot technology issues, including printing, desktop support, and network connectivity, ensuring seamless operations.",
-        "Collaborated effectively with a team to provide comprehensive technical assistance, contributing to an enhanced user experience."
+        "Forecasted population growth until 2050 utilizing Python and R, analyzing migration trends with Census, ACS, and Tax data to aid ARC in efficient fund distribution across Metro Atlanta's 11 counties.",
+        "Improved current forecasting model accuracy by 60%, identifying proxies that significantly enhanced model performance.",
+        "Utilized Python, R, Excel, GCP for data collection, visualization, analysis, and linear regression."
       ]
     },
     {
-      "company": "EUnite: Madness in the Abyss",
-      "position": "Project Member",
+      "company": "Better Business Bureau of North Georgia (BBB)",
+      "position": "QTM DataThink Program Fellowship",
       "location": "Atlanta, GA",
-      "start": "June 2023",
-      "end": "Present",
+      "start": "Sep 2022",
+      "end": "Apr 2023",
       "description": [
-        "Spearheaded the development of an innovative Unity-based two-dimensional roguelike game, focusing on captivating gameplay mechanics and immersive storytelling.",
-        "Collaborated seamlessly within a multidisciplinary team to design and implement engaging levels, character models, and interactive environments, elevating player experience.",
-        "Leveraged agile development methodologies to effectively manage project timelines and milestones, ensuring timely delivery while maintaining high standards of quality."
-      ]
-    },
-    {
-      "company": "IT&E",
-      "position": "Summer Intern",
-      "location": "Saipan, MP",
-      "start": "June 2022",
-      "end": "July 2022",
-      "description": [
-        "Gained hands-on experience by shadowing the Internet Protocol Network department of a leading telecommunications business in Saipan.",
-        "Assisted with on-site repairs at various roadside network modules and regional network hubs, contributing to network reliability.",
-        "Contributed to the optimization and troubleshooting of network performance, utilizing diagnostic tools and maintenance procedures."
+        "Investigated membership trends using SQL and R, pitching insights with Tableau visualizations to increase retention rate, reducing customer and membership churn by ~6%.",
+        "Employed SQL, R, Excel, Tableau, ggplot2, dplyr for data visualization, analysis, and business intelligence."
       ]
     }
   ],
   "projects": [
-    "none"
+    {
+      "name": "Research: Gathering Expert Opinions for Poverty-Alleviation",
+      "description": [
+        "Developed statistical tools to compile expert opinions from academic, non-profit, and government sectors for the Gates Foundation's social investment plans, gathering 3000+ NGO information in Bangladesh, Pakistan, and India."
+      ],
+      "technologies": [
+        "Python",
+        "R",
+        "HTML",
+        "Amazon Turk",
+        "Web Scraping",
+        "Data Collection",
+        "Data Analysis",
+        "Data Visualization"
+      ]
+    },
+    {
+      "name": "Machine Learning: Cyber Harassment Detection",
+      "description": [
+        "Preprocessed 48000+ text values from Kaggle, training and hyperparameter tuning models for binary classification of cyberbullying to determine the most effective machine learning algorithm for cyber harassment detection.",
+        "Achieved 99% accuracies for BERT-base models with great precision and recall, justifying models' effectiveness."
+      ],
+      "technologies": [
+        "Python",
+        "R",
+        "KNN",
+        "Decision Tree",
+        "Logistic Reg.",
+        "BERT-base",
+        "Word2Vec",
+        "Scikit-learn",
+        "Tensorflow",
+        "PyTorch"
+      ]
+    },
+    {
+      "name": "Game Development: Poro Party (watch the trailer here!)",
+      "description": [
+        "Created a multiplayer (unlimited players) web-based party-style game with cute cat characters, physics, mini-games, and music using web sockets and Phaser3 HTML game framework for fun anywhere."
+      ],
+      "technologies": [
+        "JavaScript",
+        "HTML",
+        "NodeJS",
+        "Phaser3",
+        "Socket.io",
+        "Heroku",
+        "Agile Framework",
+        "Scrum",
+        "Game Framework"
+      ]
+    },
+    {
+      "name": "Data Analysis: DataFest Hackathon 2023 Best Insight Award",
+      "description": [
+        "Explored the American Bar Association's Free Legal Answers client categorization system, resolving inefficiency of pro bono legal expert availability and reducing overall time, improving website categorization efficiency by 40%."
+      ],
+      "technologies": [
+        "Python",
+        "R",
+        "NLP",
+        "Machine Learning",
+        "Keyword Extraction",
+        "Word Embedding",
+        "K-Means Clustering"
+      ]
+    }
   ],
   "extracurriculars": [
     {
-      "organization": "Project Emory",
-      "position": "Vice President, Co-Founder",
-      "location": "Atlanta, GA",
-      "start": "August 2023",
+      "organization": "QTM Ambassador \u2022 Department of Quantitative Theory & Methods (QTM), Emory University",
+      "position": "",
+      "location": "",
+      "start": "Jun 2023",
       "end": "Present",
       "description": [
-        "Collaborated with co-founding members to establish a vibrant community at Emory University dedicated to computer science project building.",
-        "Conducted technical presentations to foster self-learning and knowledge-sharing among project members.",
-        "Spearheaded the chartering process, successfully navigating the college's legislation system to establish a new club."
+        "Mentored over 300+ undergrad QTM students on classes and guided their educational and professional tracks.",
+        "Represented the department, moderated and hosted events for undergrad/grad QTM students, alumni, and advisory board."
       ]
     },
     {
-      "organization": "Filipino Student Association",
-      "position": "President (2023 \u2013 2024), Treasurer (2021 \u2013 2023)",
-      "location": "Atlanta, GA",
-      "start": "September 2021",
-      "end": "May 2023",
+      "organization": "Leadership Experience Advising Program (LEAP) Chair \u2022 Asian Student Organization",
+      "position": "",
+      "location": "",
+      "start": "May 2023",
+      "end": "Present",
       "description": [
-        "Expertly managed the organization's funding, overseeing budgeting, reimbursements, and financial operations for community-building events.",
-        "Revitalized the FSA organization after a year of inactivity, assuming the role of President and primary risk manager.",
-        "Served as lead treasurer for collaborative projects with non-profit organizations such as CPACS and AAJC, demonstrating strong financial acumen."
+        "Directed weekly LEAP meetings for underclassmen, engaging dialogue on Asian and Asian American issues.",
+        "Spearheaded Asian cultural events and orchestrated workshops for Emory University and other Georgia colleges."
       ]
     },
     {
-      "organization": "Asian Student Organization",
-      "position": "Leadership Experience Advising Program",
-      "location": "Atlanta, GA",
-      "start": "October 2021",
+      "organization": "Emory Robotics",
+      "position": "Secretary",
+      "location": "",
+      "start": "Apr 2022",
       "end": "Present",
       "description": [
-        "Participated in a year-long program focused on developing leadership and professional skills, fostering personal growth.",
-        "Actively engaged as a member of the National Association of Asian American Professionals \u2013 NAAAP Atlanta Branch.",
-        "Promoted to LEAP Chair, continuing involvement in the Asian Student Organization's executive board, demonstrating dedication and leadership potential."
+        "Pioneered a workspace for students to work on robotics projects and build/train for VEX U Robotics competitions.",
+        "Recruited 200+ members and hosted workshops on engineering principles, hands-on building, and programming."
       ]
     }
   ],
   "other": [
     {
-      "title": "Honors and Awards",
+      "title": "Activities",
       "content": [
-        "Questbridge Scholar: matched to Emory University to receive full scholarship.",
-        "Dean's List \u2013 Spring 2023: recognizes full-time students in the top 20 percent of their class by semester GPA.",
-        "Salutatorian/National AP Scholar with Distinction"
+        "Emory Crew Varsity Rower",
+        "Emory Pep Band Alto-Sax",
+        "Emory Iberian Studies Program (Spain Study Abroad)"
       ]
     },
     {
-      "title": "Additional Skills and Interests",
+      "title": "Languages",
       "content": [
-        "Language: Fluent in written and conversational English, Basic comprehension of written and conversational Mandarin",
-        "Interests: League of Legends, Teamfight Tactics, mathematics, physics, volleyball, software development, space exploration, computer technology, website design, video games, manga, anime"
+        "Fluent: English, Korean",
+        "Intermediate: Spanish"
+      ]
+    },
+    {
+      "title": "Hobbies & Interests",
+      "content": [
+        "Gaming (League of Legends)",
+        "Playing Instruments (Guitar, Ukulele, Drums)",
+        "Skateboarding",
+        "Eating!"
       ]
     }
   ]
