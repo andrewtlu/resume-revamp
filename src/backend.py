@@ -8,6 +8,7 @@ from resume_parser import parse_resume
 import os
 from dotenv import load_dotenv
 from flask_cors import CORS
+import revamp_engine as re
 
 load_dotenv()
 app = Flask(__name__)
@@ -69,6 +70,20 @@ def parse_resume_endpoint():
         pass
 
 
+@app.route('/revamp_resume', methods=['POST'])
+def revamp_resume():
+    data = request.get_json()
+    resume_data = data.get('resume', {})
+    # print(resume_data)
+    client = anthropic.Anthropic()
+
+    # resume_data = re.correct_resume(resume_data)
+    improved_resume = re.improve_resume(client, resume_data)
+    # print('improved resume')
+    # print(improved_resume['resume_content'][0])
+    re.convert_json_to_tex(improved_resume['resume_content'][0])
+    re.compile_resume('compiled.tex')
+    return jsonify({'message': 'Resume revamped successfully'})
 
 if __name__ == "__main__":
     app.run(port=5000, debug=True)

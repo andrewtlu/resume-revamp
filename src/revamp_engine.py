@@ -181,11 +181,11 @@ def improve_resume(client: anthropic.Anthropic, resume: dict) -> dict:
     # prompt for suggestions to fix weaknesses, display to user
     # select chosen improvements and save, continue to next cycle
 
+    print('resume dict')
     print(response.content[0].text)
     resume_dict = json.loads(response.content[0].text)
-    convert_json_to_tex(resume_dict['resume_content'][0])
+    return resume_dict
 
-    pass
 
 
 def convert_json_to_tex(resume: dict):
@@ -197,10 +197,10 @@ def convert_json_to_tex(resume: dict):
     resume : dict
         The improved resume data.
     """
-    with open("src/save_message.json", "w") as f:
+    with open("save_message.json", "w") as f:
         json.dump(resume, f, indent=4)
 
-    jt.generate_resume_latex('dat/resume_template/bba_resume_template.tex',"src/save_message.json", "src/compiled.tex")
+    jt.generate_resume_latex('../dat/resume_template/bba_resume_template.tex',"save_message.json", "compiled.tex")
 
     pass
 
@@ -214,12 +214,12 @@ def compile_resume(filepath: str):
         The improved resume data.
     """
 
-    command = ['lualatex', '-output-directory=' + 'dat/output', filepath]
+    command = ['lualatex', '-output-directory=' + '../dat/output', filepath]
     result = subprocess.run(command, text = True, capture_output=True)
     if result.returncode == 0:
         print("Compilation successful: {filepath} has been compiled to PDF.")
         print(result.stdout)
-        clean_up('dat/output', filepath)
+        clean_up('../dat/output', filepath)
     pass
 
 def clean_up(directory, tex_file):
@@ -247,7 +247,7 @@ if __name__ == "__main__":
     improve_resume(client, resume)
 
     print("Now that youre resume is looking great, let's compile it!")
-    compile_resume('src/compiled.tex')
+    compile_resume('compiled.tex')
     print("Resume compiled successfully! To view the compiled resume, check the path you entered. To continue improving this iteration of your resume, rerun this program and load the compiled resume json for best performance!")
 
     # DONE input resume path
