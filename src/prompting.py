@@ -72,6 +72,75 @@ def parse_resume(client: anthropic.Anthropic) -> tuple[dict, bool]:
 
 
 
+
+
+def changes_explanation(client: anthropic.Anthropic, resume: dict) -> dict:
+    """
+    Initital prompting from Claude AI. 
+
+    Parameters:
+    -----------
+    client : anthropic.Anthropic
+        The initialized Anthropic client.
+    resume : dict
+        The parsed resume data.
+
+    Returns:
+    --------
+    out: dict
+        The improved resume.
+    """
+
+    def create_user_message(content: str):
+        return {"role": "user", "content": content}
+
+    # initial prompt to claude to read resume and identify weaknesses
+    # display weaknesses, select which to improve
+
+    messages = []
+
+    prompt = f"""{{ "instructions": "Please criticially evaluate the resume_content. Then, list out specific suggestions tailored to the given resume_content to make the resume more appealing.",
+            "requirements": [
+                "Do not give suggestions about ordering of the resume sections.",
+                "Give specific advice about word choice, information, active voice, tense consistency, show not tell, grammatical structure, clarity, conciseness, action oriented.",
+                "
+            ],
+            "request": "please return all the suggestions as a list in JSON structure under the key "suggestions".",
+            "resume_content": "[
+                {json.dumps(resume)},
+            ]"
+            }}"""
+    
+    
+    messages.append(create_user_message(prompt))
+
+    response = client.messages.create(
+        model="claude-3-sonnet-20240229",
+        max_tokens=4096,
+        system="You are an expert resume consultant and can identify weakpoints in resumes.",
+        temperature=0.5,
+        messages=messages
+    )
+
+    if isinstance(response.content, list):
+        concatenated_text = "".join([cb.text for cb in response.content if hasattr(cb, "text")])
+
+    try:
+        resume_data = json.loads(re.sub(r"^[^{]*", "", concatenated_text).strip(" `"))
+
+        #do not need this since we are using flask
+        # with open("resume_parsed.json", "w") as f:
+        #     json.dump(resume_data, f, indent=4)
+        return resume_data
+    except json.JSONDecodeError as e:
+        print("JSON decoding error:", e)
+        print("Problematic JSON string:", re.sub(r"^.*?{", "{", concatenated_text).strip(" `"))
+        return None
+
+
+
+
+
 # Have API pass the section that we are working on through the API, do not move the next section until user is satisfied with the current section.
 def initial_prompt(client: anthropic.Anthropic, resume: dict) -> dict:
     """
