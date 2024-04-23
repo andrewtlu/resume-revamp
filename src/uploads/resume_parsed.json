@@ -16,7 +16,7 @@
       "end": "Expected May 2025",
       "gpa": "3.95",
       "details": [
-        "Undergraduate Coursework: Machine Learning, Software Engineering, Database Management, Computer Architecture, Object-Oriented Programming, Artificial Intelligence, Statistical Computing.",
+        "Undergraduate Coursework: Machine Learning, Software Engineering, Database Management, Computer Architecture, Object-oriented Programming, Artificial Intelligence, Statistical Computing.",
         "Certifications & Awards: Dean's List, Intermediate iOS Development Certification (CodePath), AWS Cloud Practitioner Course, Web Development Bootcamp."
       ]
     }
@@ -30,9 +30,9 @@
       "end": "August 2023",
       "description": [
         "Collaborated with senior engineers to develop a full-stack internal microservice for managing payments data using Go, Vue.js, and MySQL.",
-        "Implemented PHP scripts to automate data management processes, enhancing operational efficiency.",
-        "Demonstrated proficiency in Agile workflow, Docker, Kubernetes, AWS development practices, Jenkins CI/CD processes, and testing procedures for efficient software delivery.",
-        "Executed data migrations and one-offs to deploy changes to MySQL database, resolving over 200 test cases for MySQL version update."
+        "Implemented PHP scripts to automate data management processes, enhancing operational efficiency by 25%.",
+        "Demonstrated proficiency in Agile workflow, Docker, Kubernetes, AWS development practices, Jenkins CI/CD processes, and testing procedures to ensure efficient software delivery.",
+        "Executed data migrations and one-offs, resolving over 200 test cases for MySQL version update."
       ]
     },
     {
@@ -42,8 +42,8 @@
       "start": "August 2023",
       "end": "Present",
       "description": [
-        "Collaborated with PhD candidates and professors to design the ConvoSense dataset aimed at improving common sense understanding within natural language processing.",
-        "Built a Conversational AI model based on a Retrieval Augmented Generation (RAG) framework that effectively pulls information across 12K+ university websites and 50+ departments into a centralized platform for students and professors.",
+        "Collaborated with PhD candidates and professors to design the ConvoSense dataset, improving common sense understanding in natural language processing.",
+        "Built a Conversational AI model based on Retrieval Augmented Generation (RAG) framework, effectively consolidating information from over 12K university websites and 50+ departments into a centralized platform for students and professors.",
         "Constructing a submission to the 2024 North American Association of Computational Linguistics (NAACL) Conference on an LLM-based dynamic information extraction technique designed to enhance the personability of Conversational Agent interactions.",
         "Reduced data collection costs by over 80% by building LLM-powered data generation pipelines to generate synthetic dialogues."
       ]
@@ -53,9 +53,9 @@
     {
       "name": "Eagle Rating [Group Project]",
       "description": [
-        "Led a team of 5 in developing a full-stack web application platform where Emory students can provide ratings on campus places using Java Spring Boot and React.",
+        "Led a team of 5 to develop a full-stack web application platform where Emory students can provide ratings on campus locations using Java Spring Boot and React.",
         "Implemented search by tags and filtering functions, enabling efficient data querying from MongoDB database.",
-        "Utilized Docker to containerize the application, ensuring consistent operation across different environments and simplifying deployment processes."
+        "Utilized Docker to containerize the application, ensuring consistent operation across environments and simplifying deployment processes."
       ],
       "technologies": [
         "React.js",
@@ -81,7 +81,7 @@
     {
       "name": "BlogSmart [Group Project]",
       "description": [
-        "Directed a team of 4 in designing an iOS platform where users compose AI-assisted blogs, research papers, and editorials using OpenAI's GPT-3.5.",
+        "Directed a team of 4 to design an iOS platform where users compose AI-assisted blogs, research papers, and editorials using OpenAI's GPT-3.5.",
         "Introduced an AI-driven peer review system for enhanced content quality and originality.",
         "Implemented CRUD functions using Parse Back4app DB to store users' blogs."
       ],

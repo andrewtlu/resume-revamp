@@ -30,8 +30,8 @@
             "start": "August 2023",
             "end": "Present",
             "description": [
-                "Maintained a friendly environment free of technical difficulties for students and faculty by efficiently managing CCCH's audio/visual system.",
-                "Provided a secure, up-to-date online experience for over 200 students by servicing and maintaining CCCH's 32 computers and 4 printers."
+                "Fostered a friendly and efficient environment by managing the Computing Center's audiovisual system, ensuring seamless operation for students and faculty.",
+                "Delivered a secure and up-to-date online experience for over 200 students by maintaining and servicing 32 computers and 4 printers, ensuring optimal performance and availability."
             ]
         },
         {
@@ -41,9 +41,9 @@
             "start": "June 2023",
             "end": "July 2023",
             "description": [
-                "Significantly improved user experience by reducing service response latency by 60% (~400 ms) through implementing a custom configurable time-to-live HTTP cache for BibleBot, serving over 5 million users across 60,000+ Discord servers.",
-                "Optimized cache usage, decreasing HTML and JSON cache usage by 99% and 39% respectively, by creating custom middleware to strip stored responses.",
-                "Leveraged knowledge in Java, MVC, REST, and Git to quickly learn and work in C# with the ASP.NET framework."
+                "Optimized the service response latency by 60% (~400 ms) by implementing a custom configurable time-to-live HTTP cache, enhancing the responsiveness for over 5 million BibleBot users across 60,000+ Discord servers.",
+                "Reduced HTML and JSON cache usage by 99% and 39%, respectively, by creating custom middleware to efficiently strip stored responses, improving overall performance.",
+                "Leveraged knowledge in Java, MVC, REST, and Git to quickly adapt and contribute to the C# ASP.NET framework, demonstrating versatility and a strong learning aptitude."
             ]
         }
     ],
@@ -56,9 +56,9 @@
             "start": "May 2023",
             "end": "Present",
             "description": [
-                "Crafted engaging Spring Boot, MongoDB, and Git curriculum to enhance the technical proficiency of over 20 members.",
-                "Provided practical software engineering experience to over 30 students by establishing and leading Emory's only open project-building club.",
-                "Mentored 2 CS students through peer-programming opportunities, coursework guidance, and pre-professional support, contributing to their overall success in software engineering."
+                "Crafted an engaging Spring Boot, MongoDB, and Git curriculum to enhance the technical proficiency of over 20 members, fostering their growth and development.",
+                "Provided hands-on software engineering experience to over 30 students by establishing and managing Emory's only open project-building club, bridging the gap between theory and practice.",
+                "Mentored two computer science students by offering peer-programming opportunities, coursework guidance, and pre-professional advice, contributing to their overall success in software engineering."
             ]
         },
         {
@@ -68,8 +68,8 @@
             "start": "December 2023",
             "end": "Present",
             "description": [
-                "Designed and developed an internal operations webpage, including an announcements board, HR service page, personal dashboard, and resources page, to provide Odyssey Family Consulting Center with a unified employee experience.",
-                "Leveraged knowledge in Figma to design pages based on client specifications, and JavaScript to implement the designed pages."
+                "Designed and developed an internal operations webpage, including an announcements board, HR service page, personal dashboard, and resources page, to provide the Odyssey Family Consulting Center with a unified employee experience.",
+                "Leveraged Figma to design visually appealing pages based on client specifications and JavaScript to implement the desired functionality, ensuring a seamless user experience."
             ]
         }
     ],

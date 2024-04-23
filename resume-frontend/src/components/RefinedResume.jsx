@@ -25,6 +25,9 @@ const handleRegenerate = async (section, index = null) => {
   setIsLoading(true);
 
   const contentToRegenerate = typeof index === 'number' ? resume[section][index] : resume[section];
+  console.log(contentToRegenerate);
+  console.log(section);
+  console.log(promptText)
   try {
     const requestBody = {
       resume: contentToRegenerate,
@@ -87,16 +90,44 @@ const handleRegenerate = async (section, index = null) => {
       }
     });
   };
-  const handleGeneratePDF = () => {
-    console.log('Generating PDF...');
-    // Implement PDF generation logic
-  };
+const handleGeneratePDF = async () => {
+  console.log('Generating PDF...');
+  try {
+    const requestBody = {
+      resume_content: resume
+    };
+    console.log(requestBody)
+    const response = await fetch('http://127.0.0.1:5000/revamp_resume', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(requestBody)
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const blob = await response.blob(); // get binary data as a response
+    const downloadUrl = window.URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = downloadUrl;
+    link.setAttribute('download', 'resume.pdf'); // set the file name
+    document.body.appendChild(link);
+    link.click();
+    link.parentNode.removeChild(link);
+    window.URL.revokeObjectURL(downloadUrl);
+  } catch (error) {
+    console.error('Failed to generate PDF:', error);
+  }
+};
+
   // Render the content of each resume section
 const renderSectionContent = (sectionContent, sectionKey) => {
   if (Array.isArray(sectionContent)) {
     return sectionContent.map((item, index) => (
       <div key={index} className="section-content">
-        <h4>{sectionKey} {index + 1}</h4>
         {Object.entries(item).map(([key, value]) => {
           // Check if the key is 'description' to render it as bullet points
           if (key === 'description' && Array.isArray(value)) {

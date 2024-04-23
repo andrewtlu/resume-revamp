@@ -9,7 +9,7 @@ def generate_resume_latex(template_file, json_file, output_file):
     # Load the JSON data
     with open(json_file, 'r') as file:
         resume_data = json.load(file)
-
+    print(resume_data)
     # Replace the placeholders in the template with the corresponding data
     template = template.replace('First Name (Nickname) Last Name', f"{resume_data['header']['name']}")
     template = template.replace('Emory Email Address', resume_data['header']['email'])
