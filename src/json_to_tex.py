@@ -14,7 +14,11 @@ def generate_resume_latex(template_file, json_file, output_file):
     template = template.replace('First Name (Nickname) Last Name', f"{resume_data['header']['name']}")
     template = template.replace('Emory Email Address', resume_data['header']['email'])
     template = template.replace('Phone Number', resume_data['header']['phone'])
-    template = template.replace('www.linkedin.com/in/janehershman/', resume_data['header']['website'])
+    website_number = 0
+    website_strings = ', '.join(r'\\href{https://' + website + '}' + '{Website ' + str(website_number + 1) + ' \\\\faInfo }' for website_number, website in enumerate(resume_data['header']['website']))
+    template = re.sub(r'\\href\{https://.*?\}\{Website  \\faInfo\}', website_strings, template)
+    # \href{https://www.linkedin.com/in/janehershman/}{Website  \faInfo}
+
 
     # Education section
     education_section = ''
@@ -37,7 +41,7 @@ def generate_resume_latex(template_file, json_file, output_file):
             education_section += f"{graduationDate_str} \\\\ \n"
         start_end_date_str = education['start'] + ' -- ' + education['end'] if 'start' in education and 'end' in education else ''
         if start_end_date_str:
-            education_section += f"{start_end_date_str} \n"
+            education_section += f"{start_end_date_str} \\\\ \n"
         gpa_str = education['gpa'] if 'gpa' in education else ''
         if gpa_str:
             education_section += f"Cumulative GPA: {gpa_str} \n"
