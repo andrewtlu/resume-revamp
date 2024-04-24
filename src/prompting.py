@@ -252,15 +252,15 @@ def sub_prompts(client: anthropic.Anthropic, resume: dict, key: str, user_input:
 
     # Initial prompt chain 1 : check for all positional argument queries given by user.
     if  key == 'projects' or key == 'experience':
-        prompt_initial = f"""{{ instructions": "Use JSON structure outlined in the value input for "section". Follow the user_input for text editing comands in the given section.",
-                        Bullet points, items, and things mean items in the list for descriptions. Stick to 1 sentence for each bullet point.",
+        prompt_initial = f"""{{ instructions": "Use JSON structure outlined below. Follow the user_input for text editing comands in the given structure below. DONT ADD OTHER KEYS",
+                        Bullet points = items = things mean items in the list for descriptions. Stick to 1 sentence for each bullet point.",
                         "user_input": "{user_input}",
-                        "section": {json.dumps(resume)},     
+                        {json.dumps(resume)},     
                         }}"""
     else:
-        prompt_initial = f"""{{ instructions": "Use JSON structure outlined in the value input for "section". Follow the user_input for text editing comands in the given section. Stick to 1 sentence for each bullet point.",
+        prompt_initial = f"""{{ instructions": "Use JSON structure outlined in the value input for "section". Follow the user_input for text editing comands in the given structure below DONT ADD OTHER KEYS. Stick to 1 sentence for each bullet point.",
                         "user_input": "{user_input}",
-                        "section": {json.dumps(resume)},     
+                         {json.dumps(resume)},     
                         }}"""
 
     messages = [{"role": "user", "content": prompt_initial}]
@@ -279,7 +279,8 @@ def sub_prompts(client: anthropic.Anthropic, resume: dict, key: str, user_input:
         print(section_data)
 
     prompt_initial = f"""{{ instructions": "Read User Input and return True if user wants to edit the resume 
-    descriptions, False if they do not want to edit resume descriptions. ONLY RETURN TRUE OR FALSE.",
+    descriptions, False if they do not want to edit resume descriptions. Any variation of remove or delete is always FALSE. 
+    ONLY RETURN TRUE OR FALSE.",
                             "user_input": "{user_input}",     
                             }}"""
 
@@ -319,8 +320,8 @@ def sub_prompts(client: anthropic.Anthropic, resume: dict, key: str, user_input:
                 "Utilize Active Voice.",
                 "Use strong action verbs.",
             ],
-            "request": "Please return the edited resume content using JSON structure outlined in the value input for "section".",
-            "section": {json.dumps(section_data)}
+            "request": "Please return the edited resume content below and user the same JSON structure below. DONT ADD OTHER KEYS",
+            {json.dumps(section_data)}
         }}"""
     
     else:
