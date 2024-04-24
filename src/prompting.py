@@ -278,10 +278,35 @@ def sub_prompts(client: anthropic.Anthropic, resume: dict, key: str, user_input:
         section_data = json.loads(re.sub(r"^[^{]*", "", concatenated_text).strip(" `"))
         print(section_data)
 
+    prompt_initial = f"""{{ instructions": "Read User Input and return True if user wants to edit the resume 
+    descriptions, False if they do not want to edit resume descriptions. ONLY RETURN TRUE OR FALSE.",
+                            "user_input": "{user_input}",     
+                            }}"""
+
+    messages = [{"role": "user", "content": prompt_initial}]
+
+    response = client.messages.create(
+        model="claude-3-sonnet-20240229",
+        max_tokens=4096,
+        system="You are an expert at understanding user inputs.",
+        temperature=0.5,
+        messages=messages
+    )
+
+    response_text = response.content[0].text
+
+    # Convert the string output to a boolean variable
+    if response_text.lower() == "true":
+        edit_resume_descriptions = True
+    else:
+        edit_resume_descriptions = False
+
+    print(edit_resume_descriptions)
+
     #prompt chain 2: enhance the resume content
     if key == "education" or key == "header" or key == "other":
         return section_data
-    else:
+    elif edit_resume_descriptions:
         prompt = f""""{{instructions": "Strictly follow the JSON structure outlined in the value of section. You must utilize user_feedback into the given section with the imrpovements in the improvement key.",
             "user_feedback": {user_input},  
             "improvements": [   
@@ -296,6 +321,9 @@ def sub_prompts(client: anthropic.Anthropic, resume: dict, key: str, user_input:
             "request": "Please return the edited resume content in JSON format and only use keys defined in section key's value input.",
             "section": {json.dumps(section_data)}
         }}"""
+    
+    else:
+        return section_data
 
     messages = [{"role": "user", "content": prompt}]
 
