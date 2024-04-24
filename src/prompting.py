@@ -1,10 +1,7 @@
 import anthropic
-# import aux
 import json
-import resume_compiler as rc
 import resume_parser as rp
 from dotenv import load_dotenv
-import resume_compiler as rc
 import re
 
 load_dotenv()
