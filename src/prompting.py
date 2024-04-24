@@ -311,7 +311,7 @@ def sub_prompts(client: anthropic.Anthropic, resume: dict, key: str, user_input:
         prompt = f""""{{instructions": "Strictly follow the JSON structure outlined in the value of section. You must utilize user_feedback into the given section with the imrpovements in the improvement key.",
             "user_feedback": {user_input},  
             "improvements": [   
-                "Change descriptions of bullet point objects only when requested. 'add' means edit",
+                "Change descriptions of bullet point objects only when requested. 'add' means to change description.",
                 "ignore user_feedback that wants deletion or addition of bullet points, items, or things.",
                 "Utilize longer sentence structures for descriptions.",
                 "Stick to 1 sentence for each bullet point.",
@@ -333,7 +333,7 @@ def sub_prompts(client: anthropic.Anthropic, resume: dict, key: str, user_input:
     response = client.messages.create(
         model="claude-3-sonnet-20240229",
         max_tokens=4096,
-        system="You are an expert at following user editing commands.",
+        system="You are an expert resume writer who can write everything in resume format.",
         temperature=0.5,
         messages=messages
     )
