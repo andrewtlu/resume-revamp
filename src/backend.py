@@ -54,7 +54,7 @@ def parse_resume_endpoint():
     client = anthropic.Anthropic()  
 
     parsed_resume = parse_resume(client, pdf_path)
-    parsed_resume = pr.initial_prompt(client, parsed_resume)
+    # parsed_resume = pr.initial_prompt(client, parsed_resume)
 
     if parsed_resume is not None:
         json_path = os.path.join(uploads_dir, 'resume_parsed.json')
