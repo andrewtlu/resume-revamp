@@ -253,7 +253,7 @@ def sub_prompts(client: anthropic.Anthropic, resume: dict, key: str, user_input:
     # Initial prompt chain 1 : check for all positional argument queries given by user.
     if  key == 'projects' or key == 'experience':
         prompt_initial = f"""{{ instructions": "Use JSON structure outlined in the value input for "section". Follow the user_input for text editing comands in the given section.",
-                        Bullet points, items, and things mean items in the list for descriptions. Stick to 1 sentence for each bullet point.",
+                        Bullet points, items, and things mean items in the list for descriptions. Stick to 1 sentence for each bullet point. If user input says "add" reword the sentence to make it more impactful and professional.",
                         "user_input": "{user_input}",
                         "section": {json.dumps(resume)},     
                         }}"""
@@ -310,7 +310,7 @@ def sub_prompts(client: anthropic.Anthropic, resume: dict, key: str, user_input:
         prompt = f""""{{instructions": "Strictly follow the JSON structure outlined in the value of section. You must utilize user_feedback into the given section with the imrpovements in the improvement key.",
             "user_feedback": {user_input},  
             "improvements": [   
-                "Change descriptions of bullet point objects only when requested.",
+                "Change descriptions of bullet point objects only when requested. 'add' means edit",
                 "ignore user_feedback that wants deletion or addition of bullet points, items, or things.",
                 "Utilize longer sentence structures for descriptions.",
                 "Stick to 1 sentence for each bullet point.",
